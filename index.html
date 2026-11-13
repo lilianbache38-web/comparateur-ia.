@@ -13,14 +13,22 @@ body{margin:0;font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sa
 a{color:inherit}
 .top{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--bd)}
 .bar{max-width:1120px;margin:auto;padding:12px 5vw;display:flex;align-items:center;gap:14px}
-.logo{font-family:ui-serif,Georgia,serif;font-size:1.25rem;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
-.logo i{font-style:normal;color:var(--claude)}
-nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+
+/* Nouveau Logo Animé */
+.logo{font-family:ui-serif,Georgia,serif;font-size:1.25rem;font-weight:600;letter-spacing:-.01em;white-space:nowrap; display:flex; align-items:center;}
+.radar-icon {display:inline-block; width:14px; height:14px; border-radius:50%; background:var(--gemini); position:relative; margin-right:8px; animation:pulse 2s infinite;}
+@keyframes pulse {
+  0% { box-shadow:0 0 0 0 rgba(79,124,255,0.7); }
+  70% { box-shadow:0 0 0 8px rgba(79,124,255,0); }
+  100% { box-shadow:0 0 0 0 rgba(79,124,255,0); }
+}
+
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1; align-items:center;}
 nav::-webkit-scrollbar{display:none}
-nav button{border:0;background:none;color:var(--mu);font:inherit;font-size:.93rem;padding:7px 13px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:.15s}
+nav button{border:0;background:none;color:var(--mu);font:inherit;font-size:.93rem;padding:7px 13px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:.15s; display:flex; align-items:center; gap:6px;}
 nav button:hover{color:var(--tx);background:var(--bd)}
 nav button.on{color:var(--tx);background:var(--bd);font-weight:600}
-#theme{border:1px solid var(--bd);background:var(--card);color:var(--tx);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem}
+#theme{border:1px solid var(--bd);background:var(--card);color:var(--tx);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem; flex-shrink:0;}
 main{max-width:1120px;margin:auto;padding:0 5vw 40px}
 .hero{padding:64px 0 28px;position:relative}
 .hero:before{content:"";position:absolute;inset:-40px -10vw auto;height:320px;z-index:-1;background:radial-gradient(420px 220px at 18% 40%,#d9775526,transparent),radial-gradient(420px 220px at 55% 20%,#4f7cff1f,transparent),radial-gradient(380px 220px at 85% 50%,#10a37f1f,transparent)}
@@ -40,9 +48,8 @@ h2{font-family:ui-serif,Georgia,serif;font-weight:500;font-size:1.6rem;letter-sp
 .card{background:var(--card);border:1px solid var(--bd);border-radius:20px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;box-shadow:var(--sh);transition:transform .18s,box-shadow .18s;animation:in .4s both}
 .card:hover{transform:translateY(-3px);box-shadow:0 12px 32px #0000001a}
 @keyframes in{from{opacity:0;transform:translateY(8px)}}
-.img{height:170px;background-size:cover;background-position:center;position:relative;display:grid;place-items:center;font:600 3rem ui-serif,Georgia,serif;color:#fff;background-color:var(--c,#888);background-image:radial-gradient(240px 160px at 20% 20%,#ffffff40,transparent),linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 55%,#000))}
-.img.has{font-size:0;background-image:none}
-.new{position:absolute;top:12px;left:12px;background:#fff;color:#111;font:700 .68rem/1 system-ui;padding:6px 9px;border-radius:99px;letter-spacing:.04em}
+.img{height:170px;background-size:cover;background-position:center;position:relative;display:grid;place-items:center;font:600 3rem ui-serif,Georgia,serif;color:#fff;background-color:var(--c,#888);}
+.new{position:absolute;top:12px;left:12px;background:#fff;color:#111;font:700 .68rem/1 system-ui;padding:6px 9px;border-radius:99px;letter-spacing:.04em; box-shadow:0 2px 8px rgba(0,0,0,0.2)}
 .play{position:absolute;right:12px;bottom:12px;background:#000b;color:#fff;font:700 .72rem system-ui;padding:6px 10px;border-radius:99px}
 .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
 .tag{display:flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
@@ -63,7 +70,7 @@ footer{max-width:1120px;margin:auto;padding:30px 5vw 50px;color:var(--mu);font-s
 </head>
 <body>
 <div class="top"><div class="bar">
-  <span class="logo"><i>✺</i> IA Radar</span>
+  <span class="logo"><span class="radar-icon"></span> IA Radar</span>
   <nav id="nav"></nav>
   <button id="theme" title="Mode clair / sombre">◐</button>
 </div></div>
@@ -71,10 +78,9 @@ footer{max-width:1120px;margin:auto;padding:30px 5vw 50px;color:var(--mu);font-s
 <footer id="foot"></footer>
 
 <script>
-/* ================= À MODIFIER ================= */
+/* ================= DONNÉES ================= */
 const RAW = "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/";
 
-// Sources OFFICIELLES (les liens ouvrent les pages officielles d'Anthropic, OpenAI, Google)
 const FEEDS = [
   {company:"claude",  name:"Anthropic News", url:RAW+"feed_anthropic_news.xml"},
   {company:"claude",  name:"Claude Blog",    url:RAW+"feed_claude.xml"},
@@ -83,27 +89,17 @@ const FEEDS = [
   {company:"gemini",  name:"Google Gemini",  url:"https://blog.google/products/gemini/rss/"}
 ];
 
-// Médias français (onglet Médias). onlyAI:true = garde seulement les articles qui parlent d'IA.
 const MEDIA = [
   {name:"Les Numériques · IA",        url:"https://www.lesnumeriques.com/intelligence-artificielle/rss.xml"},
   {name:"Le Monde Informatique · IA", url:"https://www.lemondeinformatique.fr/flux/donnees-ia.xml"},
-  {name:"Le Fil IA",                  url:"https://www.lefilia.fr/feed"},
-  {name:"Journal du Geek",            url:"https://www.journaldugeek.com/feed/", onlyAI:true}
+  {name:"Le Fil IA",                  url:"https://www.lefilia.fr/feed"}
 ];
 
-// YouTubeurs : colle ici l'identifiant de chaîne (commence par UC…). Exemple : {name:"Nom de la chaîne", id:"UCxxxxxxxxxxxxxxxxxxxxxx"}
 const YOUTUBE = [];
 
-// Abonnements : à remplir à la main, uniquement avec ce que tu as vérifié sur la page officielle.
-const PLANS = [
-  {company:"claude",  offre:"Abonnements Claude",  prix:"À renseigner", etudiant:"À vérifier", verifie:"JJ/MM/AAAA", source:"https://claude.com/pricing"},
-  {company:"chatgpt", offre:"Abonnements ChatGPT", prix:"À renseigner", etudiant:"À vérifier", verifie:"JJ/MM/AAAA", source:"https://openai.com/chatgpt/pricing/"},
-  {company:"gemini",  offre:"Google AI (Gemini)",  prix:"À renseigner", etudiant:"À vérifier", verifie:"JJ/MM/AAAA", source:"https://one.google.com/about/google-ai-plans/"}
-];
-
-/* ================= CODE ================= */
-const NAMES = {claude:"Claude", gemini:"Gemini", chatgpt:"ChatGPT", media:"Médias"};
-const KEY = "ia-radar-v2";
+/* ================= CONFIGURATION VISUELLE ================= */
+const NAMES = {claude:"Claude", gemini:"Gemini", chatgpt:"ChatGPT", media:"Médias", plans:"Abonnements", deals:"Bons Plans", archive:"Archive"};
+const KEY = "ia-radar-v3";
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const txt = s => (s||"").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#160;/g," ").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
@@ -113,6 +109,26 @@ const fmt = d => new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"lo
 const isNew = d => Date.now() - new Date(d) < 72*36e5;
 const AI_RE = /\bia\b|intelligence artificielle|chatgpt|openai|claude|anthropic|gemini|mistral|llm|gpt|deepseek|copilot|grok/i;
 const MENTION = {claude:/claude|anthropic/i, chatgpt:/chatgpt|openai|\bgpt/i, gemini:/gemini|deepmind|google ai/i};
+
+// Icônes officielles (SimpleIcons) et emojis de navigation
+const ICONS = {
+  home: "🏠",
+  claude: `<img src="https://cdn.simpleicons.org/anthropic/d97757" width="14">`,
+  gemini: `<img src="https://cdn.simpleicons.org/googlegemini/4f7cff" width="14">`,
+  chatgpt: `<img src="https://cdn.simpleicons.org/openai/10a37f" width="14">`,
+  media: "📰",
+  plans: "💳",
+  deals: "🎓",
+  archive: "🗃️"
+};
+
+// Images haute définition de secours si le site officiel ne fournit pas de miniature
+const FALLBACKS = {
+  claude: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600",
+  chatgpt: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=600",
+  gemini: "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&fit=crop&q=80&w=600",
+  media: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600"
+};
 
 let store = [], view = location.hash.slice(1) || "home", q = "", mfocus = "focus", loaded = false;
 try { store = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch {}
@@ -147,31 +163,33 @@ async function load() {
   }));
   store = store.filter(n => !/github\.com/.test(n.link)).sort((a,b) => b.date.localeCompare(a.date));
   save(); loaded = true;
-  $("#foot").innerHTML = `Mis à jour : ${new Date().toLocaleString("fr-FR")}${failed ? ` · ${failed} source(s) indisponible(s) pour le moment` : ""}<br>Les liens ouvrent les sources d'origine (Anthropic, OpenAI, Google et médias cités). Les images appartiennent à leurs auteurs.`;
+  $("#foot").innerHTML = `Mise à jour en temps réel : ${new Date().toLocaleString("fr-FR")}${failed ? ` · ${failed} flux indisponible(s)` : ""}<br>Les liens ouvrent les sources d'origine directes.`;
   render();
 }
 
-/* Images manquantes : on récupère l'image de couverture de la page d'origine (service Microlink, gratuit). */
 let busy = false;
 async function enrich() {
   if (busy) return; busy = true;
-  const todo = [...document.querySelectorAll(".card[data-l]")].filter(c => { const n = store.find(x => x.link === c.dataset.l); return n && !n.image && !n.noimg; }).slice(0, 12);
+  const todo = [...document.querySelectorAll(".card[data-l]")].filter(c => { const n = store.find(x => x.link === c.dataset.l); return n && !n.image && !n.noimg; }).slice(0, 8);
   for (const c of todo) {
     const n = store.find(x => x.link === c.dataset.l);
     try {
       const d = await (await fetch("https://api.microlink.io/?url=" + encodeURIComponent(n.link))).json();
       const u = d?.data?.image?.url;
-      if (okUrl(u)) { n.image = u; const el = c.querySelector(".img"); el.classList.add("has"); el.style.backgroundImage = `url('${cssUrl(u)}')`; const s = el.querySelector("span"); if (s) s.textContent = ""; } else n.noimg = true;
+      if (okUrl(u)) { 
+        n.image = u; 
+        const el = c.querySelector(".img"); el.style.backgroundImage = `url('${cssUrl(u)}')`; 
+      } else n.noimg = true;
     } catch { n.noimg = true; }
   }
   save(); busy = false;
 }
 
 const card = (n, i, big) => {
-  const m = n.company, u = cssUrl(n.image);
+  const m = n.company, u = cssUrl(n.image) || FALLBACKS[m] || FALLBACKS.media;
   return `<a class="card ${m}${big?" big":""}" data-l="${esc(n.link)}" href="${esc(n.link)}" target="_blank" rel="noopener noreferrer" style="animation-delay:${Math.min(i,12)*30}ms">
-  <div class="img ${u?"has":""}" ${u?`style="background-image:url('${esc(u)}')"`:""}><span>${u?"":esc((NAMES[m]||"?")[0])}</span>${isNew(n.date)?'<b class="new">NOUVEAU</b>':""}${n.video?'<b class="play">▶ Vidéo</b>':""}</div>
-  <div class="body"><span class="tag"><i class="dot"></i>${esc(NAMES[m])} · ${esc(n.source)}</span><h3>${esc(n.title)}</h3><p>${esc(n.summary)}</p><small>${fmt(n.date)}</small></div></a>`;
+  <div class="img" style="background-image:url('${esc(u)}')">${isNew(n.date)?'<b class="new">NOUVEAU</b>':""}${n.video?'<b class="play">▶ Vidéo</b>':""}</div>
+  <div class="body"><span class="tag"><i class="dot"></i>${ICONS[m]||""} ${esc(NAMES[m])} · ${esc(n.source)}</span><h3>${esc(n.title)}</h3><p>${esc(n.summary)}</p><small>${fmt(n.date)}</small></div></a>`;
 };
 const match = n => !q || (n.title + " " + n.summary).toLowerCase().includes(q);
 const tools = c => `<div class="tools ${c||""}"><input id="q" type="search" placeholder="Rechercher dans les actus…" value="${esc(q)}"></div>`;
@@ -181,17 +199,55 @@ const skel = `<div class="grid">${"<div class='skel'></div>".repeat(6)}</div>`;
 function render() {
   const app = $("#app"), news = store.filter(n => n.kind === "news" && match(n));
   const count = c => store.filter(n => n.kind === "news" && n.company === c).length;
-  $("#nav").innerHTML = [["home","Accueil"],["claude","Claude"],["gemini","Gemini"],["chatgpt","ChatGPT"],["media","Médias"],["plans","Abonnements"],["archive","Archive"]]
-    .map(([k,l]) => `<button data-v="${k}" class="${k===view?"on":""}">${l}</button>`).join("");
+  $("#nav").innerHTML = [["home","Accueil"],["claude","Claude"],["gemini","Gemini"],["chatgpt","ChatGPT"],["media","Médias"],["deals","Bons Plans"],["archive","Archive"]]
+    .map(([k,l]) => `<button data-v="${k}" class="${k===view?"on":""}">${ICONS[k]} ${l}</button>`).join("");
   let h = "";
   if (view === "home") {
     h = `<section class="hero"><h1>Tout l'écosystème Claude, Gemini et ChatGPT, au même endroit.</h1>
-      <p>Nouveaux modèles, abonnements, offres étudiantes : les annonces officielles, mises à jour à chaque visite.</p>
-      <div class="chips">${["claude","gemini","chatgpt"].map(c=>`<button class="chip ${c}" data-v="${c}"><i class="dot"></i>${NAMES[c]}${count(c)?` · ${count(c)}`:""}</button>`).join("")}<button class="chip media" data-v="media"><i class="dot"></i>Médias français</button></div></section>
+      <p>Nouveaux modèles, abonnements, offres étudiantes : les annonces officielles, mises à jour en direct à chaque visite.</p>
+      <div class="chips">${["claude","gemini","chatgpt"].map(c=>`<button class="chip ${c}" data-v="${c}">${ICONS[c]} ${NAMES[c]}${count(c)?` · ${count(c)}`:""}</button>`).join("")}<button class="chip media" data-v="media">📰 Médias français</button></div></section>
       ${tools()}<h2>À la une</h2><p class="sub">Les dernières annonces officielles des trois IA.</p>${loaded||news.length ? grid(news.slice(0,13), true) : skel}`;
-  } else if (NAMES[view] && view !== "media") {
+  } else if (NAMES[view] && view !== "media" && view !== "deals" && view !== "archive") {
     const l = news.filter(n => n.company === view);
     h = `<section class="hero ${view}" style="padding-bottom:0"><h1>Actus ${NAMES[view]}</h1><p>Annonces officielles, avec lien direct vers la source.</p></section>${tools(view)}${loaded||l.length ? grid(l, true) : skel}`;
+  } else if (view === "deals") {
+    h = `<section class="hero" style="padding-bottom:0"><h1>Bons Plans Étudiants</h1><p>Comparatif des meilleures offres IA actuelles pour optimiser ton budget et tes études.</p></section>
+      <div class="grid" style="margin-top:40px;">
+        <!-- Gemini Pro Student -->
+        <div class="card" style="border: 2px solid var(--gemini); position: relative; padding: 24px; box-shadow: 0 10px 30px rgba(79, 124, 255, 0.15);">
+           <div style="position:absolute; top:-14px; right: 24px; background: var(--gemini); color: #fff; padding: 6px 14px; border-radius: 99px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(79, 124, 255, 0.3);">Le choix malin</div>
+           <h3 style="font-size:1.4rem; margin:0">${ICONS["gemini"]} Google AI Pro</h3>
+           <p style="font-size:2.2rem; font-weight: 800; margin: 12px 0; color:var(--tx)">~5,49 € <span style="font-size:1rem; font-weight:normal; color:var(--mu)">/ mois</span></p>
+           <p style="color:var(--mu); font-size:0.95rem;"><strong>Profil ciblé :</strong> Études de niveau Master, analyse de données, intégration immédiate avec les outils bureautiques.</p>
+           <ul style="padding-left: 20px; color: var(--mu); font-size:.95rem; margin-top:16px; line-height: 1.8;">
+             <li>Accès intégral au modèle <strong>Argon</strong> (raisonnement)</li>
+             <li>Tarif étudiant imbattable (remise appliquée)</li>
+             <li>Parfait pour synthétiser des études de cas marketing</li>
+           </ul>
+        </div>
+        <!-- ChatGPT Plus -->
+        <div class="card" style="padding: 24px;">
+           <h3 style="font-size:1.4rem; margin:0">${ICONS["chatgpt"]} ChatGPT Plus</h3>
+           <p style="font-size:2.2rem; font-weight: 800; margin: 12px 0; color:var(--tx)">~22,00 € <span style="font-size:1rem; font-weight:normal; color:var(--mu)">(20$) / mois</span></p>
+           <p style="color:var(--mu); font-size:0.95rem;"><strong>Profil ciblé :</strong> Utilisation grand public polyvalente, entraînement oral, création d'assistants sur-mesure.</p>
+           <ul style="padding-left: 20px; color: var(--mu); font-size:.95rem; margin-top:16px; line-height: 1.8;">
+             <li>Référence du marché</li>
+             <li>Mode vocal naturel extrêmement réactif</li>
+             <li><strong>Plein tarif</strong> (pas de remise étudiante)</li>
+           </ul>
+        </div>
+        <!-- Claude Pro -->
+        <div class="card" style="padding: 24px;">
+           <h3 style="font-size:1.4rem; margin:0">${ICONS["claude"]} Claude Pro</h3>
+           <p style="font-size:2.2rem; font-weight: 800; margin: 12px 0; color:var(--tx)">~22,00 € <span style="font-size:1rem; font-weight:normal; color:var(--mu)">(20$) / mois</span></p>
+           <p style="color:var(--mu); font-size:0.95rem;"><strong>Profil ciblé :</strong> Développeurs, codeurs informatiques, ingénierie, lecture de très longs PDF.</p>
+           <ul style="padding-left: 20px; color: var(--mu); font-size:.95rem; margin-top:16px; line-height: 1.8;">
+             <li>Excellente rédaction (phrases très fluides)</li>
+             <li>Fonction "Computer Use" (réservée aux pros)</li>
+             <li><strong>Plein tarif</strong> (pas de remise étudiante)</li>
+           </ul>
+        </div>
+      </div>`;
   } else if (view === "media") {
     let l = store.filter(n => n.kind === "media" && match(n));
     if (mfocus !== "all") l = l.filter(n => mfocus === "focus" ? Object.values(MENTION).some(r => r.test(n.title+" "+n.summary)) : MENTION[mfocus].test(n.title+" "+n.summary));
@@ -199,13 +255,9 @@ function render() {
     const yt = k => `https://www.youtube.com/results?search_query=${encodeURIComponent(k)}&sp=CAI%253D`;
     h = `<section class="hero" style="padding-bottom:0"><h1>Ce que la presse et les vidéastes en disent</h1><p>Médias français spécialisés. Par défaut, seuls les articles qui parlent de Claude, Gemini ou ChatGPT sont affichés.</p></section>
       <div class="chips">${[["focus","Focus 3 IA"],["claude","Claude"],["gemini","Gemini"],["chatgpt","ChatGPT"],["all","Toute l'IA"]].map(([k,t])=>`<button class="chip ${NAMES[k]?k:""} ${mfocus===k?"on":""}" data-m="${k}">${t}</button>`).join("")}</div>${tools("media")}
-      <h2>Vidéos</h2>${vids.length ? grid(vids) : `<p class="sub">${YOUTUBE.length ? "Aucune vidéo pour ce filtre." : "Ajoute des chaînes dans la liste YOUTUBE du code pour qu'elles s'affichent ici. En attendant, voici les dernières vidéos en français :"}</p>`}
+      <h2>Vidéos</h2>${vids.length ? grid(vids) : `<p class="sub">${YOUTUBE.length ? "Aucune vidéo pour ce filtre." : "La liste des chaînes YouTube est en cours de configuration."}</p>`}
       <p>${["actus Claude","actus Gemini","actus ChatGPT"].map(k=>`<a class="btn" target="_blank" rel="noopener noreferrer" href="${yt(k+" français")}">▶ ${esc(k)} sur YouTube</a>`).join("")}</p>
-      <h2>Articles</h2>${loaded||arts.length ? grid(arts) : skel}
-      <p class="sub" style="margin-top:22px">Sources : ${MEDIA.map(m=>esc(m.name)).join(" · ")}</p>`;
-  } else if (view === "plans") {
-    h = `<section class="hero" style="padding-bottom:0"><h1>Abonnements & offres étudiantes</h1><p>Toujours vérifier sur la page officielle avant de s'abonner.</p></section>
-      <div class="wrap"><table><tr><th>IA</th><th>Offre</th><th>Prix</th><th>Étudiants</th><th>Vérifié le</th><th>Source</th></tr>${PLANS.map(p=>`<tr><td><span class="tag ${p.company}"><i class="dot"></i>${esc(NAMES[p.company])}</span></td><td>${esc(p.offre)}</td><td>${esc(p.prix)}</td><td>${esc(p.etudiant)}</td><td>${esc(p.verifie)}</td><td><a href="${esc(p.source)}" target="_blank" rel="noopener noreferrer">Officiel ↗</a></td></tr>`).join("")}</table></div>`;
+      <h2>Articles</h2>${loaded||arts.length ? grid(arts) : skel}`;
   } else if (view === "archive") {
     const by = {}; news.forEach(n => (by[n.date.slice(0,7)] ||= []).push(n));
     h = `<section class="hero" style="padding-bottom:0"><h1>Archive</h1><p>Toutes les annonces déjà vues, classées par mois.</p></section>${tools()}` +
