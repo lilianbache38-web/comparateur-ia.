@@ -1,367 +1,177 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Nexus | Le Comparateur des IA</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuration Tailwind pour le thème Tech -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        darkbg: '#0a0a0f',
-                        panel: '#151520',
-                        gemini: '#4285F4',
-                        chatgpt: '#10A37F',
-                        claude: '#D97757',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome (Icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>Observatoire IA - Veille Stratégique</title>
     <style>
-        /* Custom scrollbar and glassmorphism effects */
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --card-bg: #1e293b;
+            --gemini-color: #3b82f6;
+            --chatgpt-color: #10a37f;
+            --claude-color: #d97757;
+        }
         body {
-            background-color: theme('colors.darkbg');
-            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
+        header {
+            background-color: rgba(15, 23, 42, 0.95);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+            z-index: 100;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        p.subtitle {
+            color: #94a3b8;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .brand-section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid transparent;
+        }
+        .brand-gemini { border-top-color: var(--gemini-color); }
+        .brand-chatgpt { border-top-color: var(--chatgpt-color); }
+        .brand-claude { border-top-color: var(--claude-color); }
         
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        .brand-header h2 {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.6rem;
         }
-        ::-webkit-scrollbar-track {
-            background: theme('colors.darkbg'); 
+        .article-card {
+            background-color: rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.2s, background-color 0.2s;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #334155; 
-            border-radius: 4px;
+        .article-card:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255,255,255,0.06);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569; 
+        .article-date {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            display: block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-
-        .glass-panel {
-            background: rgba(21, 21, 32, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            color: #ffffff;
         }
+        .article-desc {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+        .read-more {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        .gemini-link { color: var(--gemini-color); background: rgba(59, 130, 246, 0.1); }
+        .gemini-link:hover { background: rgba(59, 130, 246, 0.2); }
         
-        .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tab-btn.active {
-            border-bottom: 2px solid #60a5fa;
-            color: #60a5fa;
-        }
+        .chatgpt-link { color: var(--chatgpt-color); background: rgba(16, 163, 127, 0.1); }
+        .chatgpt-link:hover { background: rgba(16, 163, 127, 0.2); }
+        
+        .claude-link { color: var(--claude-color); background: rgba(217, 119, 87, 0.1); }
+        .claude-link:hover { background: rgba(217, 119, 87, 0.2); }
     </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col">
+<body>
 
-    <!-- Navbar -->
-    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 border-b border-gray-800">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <i class="fa-solid fa-microchip text-2xl text-blue-500"></i>
-                <span class="text-xl font-bold tracking-wider font-mono">AI<span class="text-blue-500">NEXUS</span></span>
-            </div>
-            <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-400">
-                <a href="#models" class="hover:text-white transition-colors">Modèles</a>
-                <a href="#comparison" class="hover:text-white transition-colors">Comparateur</a>
-                <a href="#news" class="hover:text-white transition-colors">Actualités</a>
-            </div>
-            <button class="md:hidden text-gray-400 hover:text-white">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
+<header>
+    <h1>Observatoire des IA</h1>
+    <p class="subtitle">Veille technologique et analyse des modèles fondateurs</p>
+</header>
+
+<div class="container">
+    <!-- Section GEMINI -->
+    <section class="brand-section brand-gemini">
+        <div class="brand-header">
+            <h2>Google Gemini</h2>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 space-y-16">
         
-        <!-- Hero Section -->
-        <header class="text-center space-y-4 py-12">
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
-                L'état de l'art de l'<span class="gradient-text">Intelligence Artificielle</span>
-            </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg">
-                Suivez en temps réel les dernières avancées, comparez les architectures et découvrez quel modèle correspond le mieux à vos besoins (Novembre 2026).
-            </p>
-        </header>
-
-        <!-- Current Models Grid -->
-        <section id="models" class="space-y-6">
-            <h2 class="text-2xl font-bold border-l-4 border-blue-500 pl-3">Les Titans du Marché</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <!-- Gemini Card -->
-                <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-gemini transition-colors duration-300">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="fa-brands fa-google text-6xl text-gemini"></i>
-                    </div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-gemini/20 flex items-center justify-center">
-                            <i class="fa-solid fa-sparkles text-gemini"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Google Gemini 4</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-4">
-                        La nouvelle génération. Efficacité maximale avec Hydrogène, raisonnement profond avec Argon, et puissance absolue avec Carbone.
-                    </p>
-                    <div class="space-y-2 font-mono text-xs">
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-gray-500">Modèle Actuel:</span>
-                            <span class="text-blue-400">Gemini 4 Argon</span>
-                        </div>
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-gray-500">Contexte max:</span>
-                            <span class="text-white">2 Millions tokens</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ChatGPT Card -->
-                <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-chatgpt transition-colors duration-300">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="fa-solid fa-bolt text-6xl text-chatgpt"></i>
-                    </div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-chatgpt/20 flex items-center justify-center">
-                            <i class="fa-solid fa-robot text-chatgpt"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">OpenAI ChatGPT</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-4">
-                        Le pionnier continue d'évoluer avec l'architecture GPT-5 et la gamme de réflexion avancée "o1-Pro".
-                    </p>
-                    <div class="space-y-2 font-mono text-xs">
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-gray-500">Modèle Actuel:</span>
-                            <span class="text-green-400">GPT-5 / o1-Pro</span>
-                        </div>
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-gray-500">Contexte max:</span>
-                            <span class="text-white">500k tokens</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Claude Card -->
-                <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-claude transition-colors duration-300">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="fa-solid fa-brain text-6xl text-claude"></i>
-                    </div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-claude/20 flex items-center justify-center">
-                            <i class="fa-solid fa-code text-claude"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Anthropic Claude</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-4">
-                        Le chouchou des développeurs. Claude 4 Opus repousse les limites du codage et de l'analyse logique.
-                    </p>
-                    <div class="space-y-2 font-mono text-xs">
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-gray-500">Modèle Actuel:</span>
-                            <span class="text-orange-400">Claude 4 Opus</span>
-                        </div>
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-gray-500">Contexte max:</span>
-                            <span class="text-white">1 Million tokens</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Comparison Table -->
-        <section id="comparison" class="space-y-6">
-            <h2 class="text-2xl font-bold border-l-4 border-purple-500 pl-3">Comparaison Technique (Fin 2026)</h2>
-            <div class="glass-panel rounded-2xl overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-[800px]">
-                    <thead>
-                        <tr class="bg-gray-800/50 border-b border-gray-700 text-sm uppercase tracking-wider text-gray-400">
-                            <th class="p-4 font-medium">Fonctionnalité</th>
-                            <th class="p-4 font-medium text-blue-400">Gemini 4 (Argon)</th>
-                            <th class="p-4 font-medium text-green-400">ChatGPT (GPT-5)</th>
-                            <th class="p-4 font-medium text-orange-400">Claude 4 (Opus)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm divide-y divide-gray-800">
-                        <tr class="hover:bg-gray-800/30 transition-colors">
-                            <td class="p-4 font-medium text-gray-300">Fenêtre de contexte</td>
-                            <td class="p-4">Jusqu'à 2 Millions</td>
-                            <td class="p-4">500 000</td>
-                            <td class="p-4">1 Million</td>
-                        </tr>
-                        <tr class="hover:bg-gray-800/30 transition-colors">
-                            <td class="p-4 font-medium text-gray-300">Multimodalité Native</td>
-                            <td class="p-4"><i class="fa-solid fa-check text-green-500 mr-2"></i>Texte, Image, Audio, Vidéo, Code</td>
-                            <td class="p-4"><i class="fa-solid fa-check text-green-500 mr-2"></i>Texte, Image, Audio, Code</td>
-                            <td class="p-4"><i class="fa-solid fa-check text-green-500 mr-2"></i>Texte, Image, Code</td>
-                        </tr>
-                        <tr class="hover:bg-gray-800/30 transition-colors">
-                            <td class="p-4 font-medium text-gray-300">Points Forts (2026)</td>
-                            <td class="p-4 text-gray-400">Raisonnement profond, Écosystème Google, Vitesse (Hydrogène)</td>
-                            <td class="p-4 text-gray-400">Génération créative, Personnalisation fine, Plugins natifs</td>
-                            <td class="p-4 text-gray-400">Sécurité, Rédaction naturelle, Excellence en programmation</td>
-                        </tr>
-                        <tr class="hover:bg-gray-800/30 transition-colors">
-                            <td class="p-4 font-medium text-gray-300">Tarif Standard (Pro)</td>
-                            <td class="p-4">21.99 € / mois (ou forfait étudiant)</td>
-                            <td class="p-4">24.00 € / mois</td>
-                            <td class="p-4">22.00 € / mois</td>
-                        </tr>
-                        <tr class="hover:bg-gray-800/30 transition-colors">
-                            <td class="p-4 font-medium text-gray-300">Palier Ultra/Enterprise</td>
-                            <td class="p-4"><span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded text-xs">AI Ultra (Carbone) 99€</span></td>
-                            <td class="p-4"><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">Pro-Team 60€</span></td>
-                            <td class="p-4"><span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded text-xs">Enterprise Custom</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- News Section -->
-        <section id="news" class="space-y-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <h2 class="text-2xl font-bold border-l-4 border-green-500 pl-3">Dernières Actualités & Mises à jour</h2>
-                
-                <!-- Filters -->
-                <div class="flex bg-gray-800 rounded-lg p-1 space-x-1" id="news-filters">
-                    <button class="px-4 py-2 text-sm font-medium rounded-md bg-gray-700 text-white transition-colors" data-filter="all">Tout</button>
-                    <button class="px-4 py-2 text-sm font-medium rounded-md text-gray-400 hover:text-white transition-colors" data-filter="gemini">Gemini</button>
-                    <button class="px-4 py-2 text-sm font-medium rounded-md text-gray-400 hover:text-white transition-colors" data-filter="chatgpt">ChatGPT</button>
-                    <button class="px-4 py-2 text-sm font-medium rounded-md text-gray-400 hover:text-white transition-colors" data-filter="claude">Claude</button>
-                </div>
-            </div>
-
-            <!-- News Feed -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="news-feed">
-                
-                <!-- News Item 1 -->
-                <article class="glass-panel p-5 rounded-xl border-l-2 border-gemini news-card" data-category="gemini">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs font-mono text-gemini bg-gemini/10 px-2 py-1 rounded">Mise à jour Majeure</span>
-                        <span class="text-xs text-gray-500">12 Nov 2026</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Lancement de la gamme Gemini 4</h3>
-                    <p class="text-sm text-gray-400 line-clamp-3">
-                        Google déploie ses nouveaux modèles : Hydrogène pour la vitesse, Argon pour les workflows complexes, et Carbone (99€/mois) pour les tâches extrêmes. Les limites d'utilisation d'Argon devraient s'assouplir prochainement.
-                    </p>
-                </article>
-
-                <!-- News Item 2 -->
-                <article class="glass-panel p-5 rounded-xl border-l-2 border-chatgpt news-card" data-category="chatgpt">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs font-mono text-chatgpt bg-chatgpt/10 px-2 py-1 rounded">Nouvelle Fonction</span>
-                        <span class="text-xs text-gray-500">05 Nov 2026</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Déploiement global de GPT-5 Advanced Voice</h3>
-                    <p class="text-sm text-gray-400 line-clamp-3">
-                        OpenAI active son nouveau moteur vocal ultra-réaliste pour tous les abonnés Plus. Il permet des interruptions naturelles, détecte les émotions et ajuste son intonation en temps réel.
-                    </p>
-                </article>
-
-                <!-- News Item 3 -->
-                <article class="glass-panel p-5 rounded-xl border-l-2 border-claude news-card" data-category="claude">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs font-mono text-claude bg-claude/10 px-2 py-1 rounded">Amélioration Modèle</span>
-                        <span class="text-xs text-gray-500">28 Oct 2026</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Claude 4 Opus optimise le traitement du code</h3>
-                    <p class="text-sm text-gray-400 line-clamp-3">
-                        Anthropic annonce une amélioration de 40% de la vitesse de génération de code sur de grands dépôts GitHub. La nouvelle interface "Artifacts 2.0" permet d'éditer des projets React complets en direct.
-                    </p>
-                </article>
-
-                <!-- News Item 4 -->
-                <article class="glass-panel p-5 rounded-xl border-l-2 border-gemini news-card" data-category="gemini">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs font-mono text-gemini bg-gemini/10 px-2 py-1 rounded">Annonce Tarifs</span>
-                        <span class="text-xs text-gray-500">10 Nov 2026</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Maintien de l'abonnement étudiant</h3>
-                    <p class="text-sm text-gray-400 line-clamp-3">
-                        Google confirme que le palier AI Pro étudiant restera à 5.49€/mois, incluant un accès complet à Gemini 4 Argon, bien que soumis à des quotas journaliers dynamiques.
-                    </p>
-                </article>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-gray-800 mt-12 py-8 bg-black/50">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; 2026 AI Nexus Tracker. Projet personnel.</p>
-            <div class="flex space-x-4 mt-4 md:mt-0">
-                <i class="fa-brands fa-github hover:text-white cursor-pointer text-xl"></i>
-                <i class="fa-brands fa-twitter hover:text-white cursor-pointer text-xl"></i>
-                <i class="fa-brands fa-discord hover:text-white cursor-pointer text-xl"></i>
-            </div>
+        <div class="article-card">
+            <span class="article-date">Dernière Mise à jour</span>
+            <h3 class="article-title">Lancement de Gemini 4 : Hydrogène et Carbone</h3>
+            <p class="article-desc">Déploiement de la nouvelle architecture segmentée. Le modèle Carbone cible les raisonnements extrêmes, tandis qu'Hydrogène optimise la vitesse d'exécution quotidienne.</p>
+            <a href="https://blog.google/technology/ai/" target="_blank" class="read-more gemini-link">Lire l'annonce officielle →</a>
         </div>
-    </footer>
+        
+        <div class="article-card">
+            <span class="article-date">Analyse Technique</span>
+            <h3 class="article-title">Gemini Argon vs Pro : Gestion des quotas de calcul</h3>
+            <p class="article-desc">Explication de la consommation asymétrique des tokens lors des workflows complexes et de la rétrogradation dynamique vers le modèle Flash.</p>
+            <a href="https://deepmind.google/technologies/gemini/" target="_blank" class="read-more gemini-link">Découvrir l'architecture →</a>
+        </div>
+    </section>
 
-    <!-- Vanilla JS Logic -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterButtons = document.querySelectorAll('#news-filters button');
-            const newsCards = document.querySelectorAll('.news-card');
+    <!-- Section CHATGPT -->
+    <section class="brand-section brand-chatgpt">
+        <div class="brand-header">
+            <h2>OpenAI ChatGPT</h2>
+        </div>
+        
+        <div class="article-card">
+            <span class="article-date">Nouveauté</span>
+            <h3 class="article-title">Amélioration du mode vocal avancé</h3>
+            <p class="article-desc">OpenAI déploie de nouvelles fonctionnalités vocales réduisant la latence globale et perfectionnant la compréhension des nuances et accents régionaux.</p>
+            <a href="https://openai.com/news/" target="_blank" class="read-more chatgpt-link">Voir les mises à jour →</a>
+        </div>
+    </section>
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update button styling
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('bg-gray-700', 'text-white');
-                        btn.classList.add('text-gray-400');
-                    });
-                    button.classList.remove('text-gray-400');
-                    button.classList.add('bg-gray-700', 'text-white');
+    <!-- Section CLAUDE -->
+    <section class="brand-section brand-claude">
+        <div class="brand-header">
+            <h2>Anthropic Claude</h2>
+        </div>
+        
+        <div class="article-card">
+            <span class="article-date">Fonctionnalité clé</span>
+            <h3 class="article-title">Computer Use : Interaction d'interface</h3>
+            <p class="article-desc">La nouvelle API expérimentale d'Anthropic permet aux développeurs d'autoriser Claude à simuler des actions humaines (clics, frappes) via l'analyse d'écran locale.</p>
+            <a href="https://www.anthropic.com/news" target="_blank" class="read-more claude-link">Comprendre le fonctionnement →</a>
+        </div>
+    </section>
+</div>
 
-                    // Filter logic
-                    const filterValue = button.getAttribute('data-filter');
-                    
-                    newsCards.forEach(card => {
-                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                            card.style.display = 'block';
-                            // Quick fade-in animation
-                            card.style.opacity = '0';
-                            setTimeout(() => {
-                                card.style.transition = 'opacity 0.3s ease';
-                                card.style.opacity = '1';
-                            }, 50);
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>
