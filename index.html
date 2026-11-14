@@ -3,275 +3,381 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IA Radar · Veille 100% Française</title>
+<title>IA Radar · Veille IA en français (Claude, Gemini, ChatGPT)</title>
+<meta name="description" content="Toute l'actualité de Claude, Gemini et ChatGPT en français : nouveaux modèles, abonnements, offres étudiantes. Mise à jour automatique.">
+<meta property="og:title" content="IA Radar · Veille IA en français"><meta property="og:description" content="Claude, Gemini, ChatGPT : l'actu, les prix et les bons plans étudiants."><meta property="og:type" content="website"><meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#faf9f5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%234f7cff%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-size=%2732%27 text-anchor=%27middle%27 fill=%27white%27%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <style>
 :root{--bg:#faf9f5;--card:#fff;--tx:#1f1e1d;--mu:#6b6a66;--bd:#e8e6dc;--claude:#d97757;--gemini:#4f7cff;--chatgpt:#10a37f;--media:#7c6bd6;--sh:0 1px 2px #0000000a,0 8px 24px #00000008}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1b1a18;--card:#262523;--tx:#f1efe8;--mu:#a3a099;--bd:#38362f;--sh:none}}
 :root[data-theme=dark]{--bg:#1b1a18;--card:#262523;--tx:#f1efe8;--mu:#a3a099;--bd:#38362f;--sh:none}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased}
+body{margin:0;font:1rem/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gemini);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-999px;background:var(--tx);color:var(--bg);padding:8px 14px;z-index:99}.skip:focus{left:8px;top:8px}
 .claude{--c:var(--claude)}.gemini{--c:var(--gemini)}.chatgpt{--c:var(--chatgpt)}.media{--c:var(--media)}
-
-/* En-tête et Navigation */
-.top{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--bd)}
-.bar{max-width:1120px;margin:auto;padding:12px 5vw;display:flex;align-items:center;gap:14px}
-.logo{font-family:ui-serif,Georgia,serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap;display:flex;align-items:center;color:var(--tx)}
-.radar-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--gemini);position:relative;margin-right:10px;color:#fff;font-size:14px}
-.radar-icon::after{content:'';position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid var(--gemini);animation:radar-pulse 2s infinite ease-out}
-@keyframes radar-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.8);opacity:0}}
-nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;align-items:center}
-nav::-webkit-scrollbar{display:none}
-nav button{border:0;background:none;color:var(--mu);font:inherit;font-size:.93rem;font-weight:500;padding:8px 14px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:.2s;display:flex;align-items:center;gap:8px}
-nav button:hover{color:var(--tx);background:var(--bd)}
-nav button.on{color:var(--tx);background:var(--bd);font-weight:700}
-nav button img,.tag img{width:16px;height:16px}
-#theme{border:1px solid var(--bd);background:var(--card);color:var(--tx);height:36px;width:36px;border-radius:50%;cursor:pointer;font-size:1rem;flex-shrink:0}
-#theme:hover{border-color:var(--tx)}
-
-/* Structure principale */
+.top{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 85%,transparent);border-bottom:1px solid var(--bd)}
+.bar{max-width:1120px;margin:auto;padding:10px 5vw;display:flex;align-items:center;gap:10px}
+.logo{font:700 1.25rem ui-serif,Georgia,serif;letter-spacing:-.02em;white-space:nowrap;display:flex;align-items:center}
+.radar{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--gemini);position:relative;margin-right:9px;color:#fff;font-size:14px}
+.radar::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--gemini);animation:pulse 2s infinite ease-out}
+@keyframes pulse{to{transform:scale(1.8);opacity:0}}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}nav::-webkit-scrollbar{display:none}
+nav button{border:0;background:none;color:var(--mu);font:inherit;font-size:.9rem;font-weight:500;padding:7px 12px;border-radius:99px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:7px;transition:.15s}
+nav button:hover,nav button.on{color:var(--tx);background:var(--bd)}nav button.on{font-weight:700}
+nav img,.tag img{width:16px;height:16px}
+.ib{border:1px solid var(--bd);background:var(--card);color:var(--tx);height:34px;min-width:34px;border-radius:99px;cursor:pointer;font:inherit;font-size:.85rem;flex-shrink:0}
+.ib:hover{border-color:var(--tx)}
+.ticker{overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--bd);font-size:.85rem;color:var(--mu);padding:7px 0}
+.tk{display:inline-flex;gap:46px;padding-left:46px;animation:tk 90s linear infinite}.ticker:hover .tk{animation-play-state:paused}
+@keyframes tk{to{transform:translateX(-50%)}}.tk a:hover{color:var(--tx)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}.ticker{overflow-x:auto}}
 main{max-width:1120px;margin:auto;padding:0 5vw 40px}
-.hero{padding:50px 0 20px;position:relative}
-.hero h1{font-family:ui-serif,Georgia,serif;font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;max-width:800px}
-.hero p{color:var(--mu);font-size:1.1rem;max-width:650px;margin:0}
-h2{font-family:ui-serif,Georgia,serif;font-weight:600;font-size:1.6rem;letter-spacing:-.015em;margin:34px 0 12px}
-.empty,.note{color:var(--mu);padding:20px 0}
-
-/* Grille et Cartes Articles */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:20px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:transform .2s,box-shadow .2s;animation:in .4s both}
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px #0000001a}
-@keyframes in{from{opacity:0;transform:translateY(10px)}}
-
-.img{height:180px;position:relative;overflow:hidden;background:var(--bd)}
-.img .ph{position:absolute;inset:0;display:grid;place-items:center;font:600 3rem ui-serif,Georgia,serif;color:#fff;background:radial-gradient(240px 160px at 20% 20%,#ffffff40,transparent),linear-gradient(135deg,var(--c,#888),color-mix(in srgb,var(--c,#888) 55%,#000))}
+.hero{padding:44px 0 14px}.hero h1{font:600 clamp(2rem,5vw,3rem)/1.1 ui-serif,Georgia,serif;letter-spacing:-.02em;margin:0 0 10px;max-width:800px}.hero p{color:var(--mu);font-size:1.08rem;max-width:660px;margin:0}
+h2{font:600 1.5rem ui-serif,Georgia,serif;letter-spacing:-.015em;margin:30px 0 8px}h3{margin:0}
+.empty,.note{color:var(--mu);padding:18px 0}.note{font-size:.9rem;padding:6px 0}
+.banner{margin:16px 0;padding:12px 16px;border-radius:14px;background:color-mix(in srgb,var(--gemini) 12%,var(--card));border:1px solid var(--bd)}
+.pills,.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pill,.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-size:.88rem;cursor:pointer}
+.chip:hover,.pill:hover{border-color:var(--tx)}.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--c,var(--mu));display:inline-block}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:6px 22px 18px;margin:18px 0;box-shadow:var(--sh)}.panel li{margin:8px 0}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 4px}
+.toolbar input[type=search],.toolbar select,.in{padding:9px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-size:.92rem}
+.toolbar input[type=search]{flex:1;min-width:200px;max-width:360px}.chk{font-size:.9rem;color:var(--mu);display:flex;gap:6px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-top:16px}
+.list{display:flex;flex-direction:column;gap:14px;margin-top:16px}.list .card{flex-direction:row}.list .img{width:220px;height:auto;min-height:130px;flex-shrink:0}
+@media(max-width:640px){.list .card{flex-direction:column}.list .img{width:100%;height:160px}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:transform .2s,box-shadow .2s;animation:in .4s both}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px #0000001a}.card.read{opacity:.6}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.img{height:178px;position:relative;overflow:hidden;background:var(--bd);display:block}
+.ph{position:absolute;inset:0}.ph svg{width:100%;height:100%;display:block}
 .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.new{position:absolute;top:12px;left:12px;z-index:2;background:#fff;color:#111;font:700 .7rem system-ui;padding:6px 10px;border-radius:99px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-.gen{position:absolute;right:10px;bottom:10px;z-index:2;background:#000a;color:#fff;font:600 .68rem system-ui;padding:5px 9px;border-radius:99px}
-.body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.tag{display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--tx)}
-.body h3{margin:0;font-size:1.1rem;line-height:1.4;font-weight:700}
-.body p{margin:0;color:var(--mu);font-size:.95rem;line-height:1.5}
-.body small{margin-top:auto;padding-top:10px;color:var(--mu);font-size:.85rem}
-
-/* Bons Plans */
-.deal-card{padding:24px;border:2px solid var(--bd);position:relative}
-.deal-card.best{border-color:var(--gemini);background:linear-gradient(to bottom,rgba(79,124,255,.05),transparent)}
-.deal-badge{position:absolute;top:-14px;right:20px;background:var(--gemini);color:#fff;padding:4px 12px;border-radius:99px;font-size:.8rem;font-weight:700}
-.deal-price{font-size:2.5rem;font-weight:800;margin:10px 0;color:var(--tx);font-family:system-ui}
-.deal-price span{font-size:1rem;font-weight:500;color:var(--mu)}
-.deal-list{padding-left:20px;color:var(--mu);margin-top:16px;line-height:1.7}
-.deal-list strong{color:var(--tx)}
-footer{max-width:1120px;margin:auto;padding:26px 5vw 50px;color:var(--mu);font-size:.85rem;border-top:1px solid var(--bd)}
+.new{position:absolute;top:10px;left:10px;z-index:2;background:#fff;color:#111;font:700 .68rem system-ui;padding:6px 9px;border-radius:99px}
+.gen,.play{position:absolute;right:10px;bottom:10px;z-index:2;background:#000b;color:#fff;font:600 .68rem system-ui;padding:5px 9px;border-radius:99px}
+.body{padding:16px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
+.tag{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.body h3{font-size:1.05rem;line-height:1.38;font-weight:700}.body p{margin:0;color:var(--mu);font-size:.92rem}
+.tgs{display:flex;gap:6px;flex-wrap:wrap}.tgs span{font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--bd);color:var(--mu)}
+.act{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;color:var(--mu);font-size:.82rem}
+.act button{border:0;background:none;color:var(--mu);cursor:pointer;font-size:1.05rem;padding:4px 7px;border-radius:8px}.act button:hover{background:var(--bd);color:var(--tx)}
+.act button.on{color:#e0457b}
+.deal{padding:22px;border:2px solid var(--bd);position:relative;border-radius:18px;background:var(--card)}.deal.best{border-color:var(--gemini)}
+.badge{position:absolute;top:-13px;right:18px;background:var(--gemini);color:#fff;padding:3px 12px;border-radius:99px;font-size:.78rem;font-weight:700}
+.price{font:800 2.2rem system-ui;margin:8px 0}.deal ul{padding-left:18px;color:var(--mu);line-height:1.7}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.tl h3{margin-bottom:8px}.tl li{margin:7px 0;font-size:.92rem}.tl small{color:var(--mu);display:block}
+.q button{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;cursor:pointer}.q button:hover{border-color:var(--tx)}
+.calc label{display:flex;gap:10px;align-items:center;margin:8px 0}.calc input[type=number]{width:90px}.tot{font:700 1.5rem system-ui;margin-top:10px}
+pre.p{white-space:pre-wrap;background:var(--bd);padding:12px 14px;border-radius:12px;font:.88rem/1.5 ui-monospace,monospace;margin:10px 0}
+dl dt{font-weight:700;margin-top:12px}dl dd{margin:2px 0;color:var(--mu)}
+#modal,#pal{position:fixed;inset:0;background:#000a;z-index:50;display:none;align-items:flex-start;justify-content:center;padding:8vh 5vw}
+#modal.on,#pal.on{display:flex}#modal .box{width:min(900px,100%);aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden}#modal iframe{width:100%;height:100%;border:0}
+#pal .box{width:min(620px,100%);background:var(--card);border-radius:18px;padding:14px}#pal input{width:100%}#pal a{display:block;padding:10px;border-radius:10px;font-size:.93rem}#pal a:hover{background:var(--bd)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:.9rem;opacity:0;pointer-events:none;transition:.25s;z-index:60}#toast.on{opacity:1}
+footer{max-width:1120px;margin:auto;padding:24px 5vw 50px;color:var(--mu);font-size:.85rem;border-top:1px solid var(--bd)}footer a{text-decoration:underline}
 </style>
 </head>
 <body>
-
-<div class="top">
-  <div class="bar">
-    <span class="logo"><span class="radar-icon">✦</span> IA RADAR</span>
-    <nav id="nav"></nav>
-    <button id="theme" title="Mode clair / sombre">◐</button>
-  </div>
-</div>
-
+<a class="skip" href="#app">Aller au contenu</a>
+<div class="top"><div class="bar">
+  <span class="logo"><span class="radar">✦</span>IA RADAR</span>
+  <nav id="nav" aria-label="Navigation principale"></nav>
+  <button class="ib" id="fsm" aria-label="Réduire le texte">A−</button><button class="ib" id="fsp" aria-label="Agrandir le texte">A+</button>
+  <button class="ib" id="srch" aria-label="Rechercher (Ctrl+K)">🔍</button>
+  <button class="ib" id="theme" aria-label="Mode clair / sombre">◐</button>
+</div><div id="tick"></div></div>
 <main id="app"></main>
 <footer id="foot"></footer>
+<div id="modal" role="dialog" aria-label="Lecteur vidéo"><div class="box"></div></div>
+<div id="pal" role="dialog" aria-label="Recherche"><div class="box"><input class="in" id="pq" type="search" placeholder="Rechercher une actu…" aria-label="Rechercher"><div id="pr"></div></div></div>
+<div id="toast" role="status"></div>
 
 <script>
-/* ================= SOURCES ================= */
+/* ================= CONFIG ================= */
+const NAMES = {claude:"Claude", gemini:"Gemini", chatgpt:"ChatGPT", media:"Médias"};
+const IA = ["claude","gemini","chatgpt"];
+const TAGS = [["Nouveau modèle",/\b(model|modèle|opus|sonnet|haiku|gpt-?\d|gemini \d|launch|lance|dévoile|introduc|releas|sort)/i],["Prix & offres",/pric|prix|tarif|abonnement|subscription|gratuit|free|étudiant|student|plan\b/i],["Sécurité",/secur|sécur|safety|sûreté|risk|cyber|privacy|confidential/i],["Code",/\bcode|développeur|developer|\bapi\b|sdk|agent|programm/i],["Recherche",/research|recherche|étude|study|paper/i]];
+const ico = (s,c,f) => `<img src="https://cdn.simpleicons.org/${s}/${c}" alt="" onerror="this.outerHTML='${f}'">`;
+const ICONS = {claude:ico("anthropic","d97757","🟠"), gemini:ico("googlegemini","4f7cff","🔵"), chatgpt:ico("openai","10a37f","🟢")};
+
+/* SOURCES : ajoute une ligne pour une nouvelle source. */
 const RAW = "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/";
 const FEEDS = [
-  {company:"claude",  name:"Anthropic News", url:RAW+"feed_anthropic_news.xml"},
-  {company:"chatgpt", name:"OpenAI News",    url:"https://openai.com/news/rss.xml"},
-  {company:"gemini",  name:"Google AI Blog", url:"https://blog.google/technology/ai/rss/"}
-];
+ {company:"claude", name:"Anthropic News", url:RAW+"feed_anthropic_news.xml"},
+ {company:"claude", name:"Claude Blog", url:RAW+"feed_claude.xml"},
+ {company:"chatgpt", name:"OpenAI News", url:"https://openai.com/news/rss.xml"},
+ {company:"gemini", name:"Google AI Blog", url:"https://blog.google/technology/ai/rss/"},
+ {company:"gemini", name:"Google Gemini", url:"https://blog.google/products/gemini/rss/"}];
 const MEDIA = [
-  {name:"Journal du Geek", url:"https://www.journaldugeek.com/feed/", onlyAI:true},
-  {name:"Les Numériques",  url:"https://www.lesnumeriques.com/intelligence-artificielle/rss.xml"}
-];
+ {name:"Les Numériques · IA", url:"https://www.lesnumeriques.com/intelligence-artificielle/rss.xml"},
+ {name:"Le Monde Informatique · IA", url:"https://www.lemondeinformatique.fr/flux/donnees-ia.xml"},
+ {name:"Le Fil IA", url:"https://www.lefilia.fr/feed"},
+ {name:"Journal du Geek", url:"https://www.journaldugeek.com/feed/", onlyAI:true}];
+const YOUTUBE = []; // Exemple : {name:"Nom de la chaîne", id:"UCxxxxxxxxxxxxxxxxxxxxxx"}
+const AI_RE = /\bia\b|intelligence artificielle|chatgpt|openai|claude|anthropic|gemini|mistral|llm|gpt|deepseek|copilot|grok/i;
 
-/* ================= ICÔNES (avec repli si l'icône n'existe plus) ================= */
-const ico = (slug, color, fallback) => `<img src="https://cdn.simpleicons.org/${slug}/${color}" alt="" onerror="this.outerHTML='${fallback}'">`;
-const ICONS = {
-  home:"🏠", media:"📰", deals:"🎓", archive:"🗃️",
-  claude: ico("anthropic","d97757","🟠"),
-  gemini: ico("googlegemini","4f7cff","🔵"),
-  chatgpt: ico("openai","10a37f","🟢")
-};
-const NAMES = {claude:"Claude", gemini:"Gemini", chatgpt:"ChatGPT", media:"Médias", deals:"Bons Plans", archive:"Archive"};
+// Bons plans : tarifs indicatifs, À VÉRIFIER sur les pages officielles (source = lien officiel).
+const DEALS = [
+ {c:"gemini", name:"Google AI Pro (Gemini)", price:5.49, label:"~5,49 € / mois", profile:"Étudiants Master / Bureautique.", student:true, notes:["Remise étudiante appliquée."], src:"https://one.google.com/about/google-ai-plans/", best:true},
+ {c:"mistral", emoji:"🌪️", name:"Mistral Pro", price:5.99, label:"5,99 € / mois", profile:"Souveraineté européenne / Code.", student:true, notes:["Offre étudiante : valable 12 mois.","Le leader français de l'IA."], src:"https://mistral.ai/"},
+ {c:"perplexity", emoji:"🔍", name:"Perplexity Pro", price:10, label:"~10,00 € / mois", profile:"Recherche académique poussée.", student:true, notes:["Remise 50 % via SheerID.","Accès à plusieurs modèles de pointe."], src:"https://www.perplexity.ai/"},
+ {c:"claude", name:"Claude Pro", price:22, label:"~22,00 € (20 $)", profile:"Développeurs avancés.", student:null, notes:["Pas d'offre étudiante connue : à vérifier."], src:"https://claude.com/pricing"},
+ {c:"chatgpt", name:"ChatGPT Plus", price:22, label:"~22,00 € (20 $)", profile:"Grand public / Mode vocal.", student:null, notes:["Promo étudiante : à vérifier selon ton pays."], src:"https://openai.com/chatgpt/pricing/"}
+];
+const QUIZ = [
+ {q:"Tu utilises surtout l'IA pour…", a:[["Programmer",{claude:2,chatgpt:1}],["Rédiger et analyser des documents",{claude:2,gemini:1}],["Chercher, et rester dans l'écosystème Google",{gemini:3}],["Un peu de tout (discussion, voix, images)",{chatgpt:2,gemini:1}]]},
+ {q:"Ton quotidien numérique, c'est plutôt…", a:[["Google (Android, Gmail, Drive)",{gemini:3}],["Apple ou autre",{chatgpt:1,claude:1}],["Mon éditeur de code",{claude:2,chatgpt:1}],["Rien de particulier",{claude:1,gemini:1,chatgpt:1}]]},
+ {q:"Tu préfères des réponses…", a:[["Longues et structurées",{claude:2}],["Rapides et variées",{chatgpt:2}],["Liées à mes documents et mails",{gemini:2}]]},
+ {q:"Côté budget…", a:[["Je teste d'abord en gratuit",{claude:1,gemini:1,chatgpt:1}],["Je peux payer ~20 €/mois",{claude:1,chatgpt:1}],["Étudiant : le moins cher possible",{gemini:2}]]}];
+const VERDICT = {claude:"Claude : à essayer en priorité pour l'écriture, l'analyse de longs textes et le code.", gemini:"Gemini : à essayer en priorité si tu vis dans l'écosystème Google.", chatgpt:"ChatGPT : un bon généraliste pour tout faire (discussion, voix, images)."};
+const GUIDES = [
+ {t:"Écrire un bon prompt (valable partout)", tips:["Donne un rôle et un contexte précis.","Dis l'objectif et le format voulu (liste, tableau, ton).","Ajoute un exemple de ce que tu attends.","Demande-lui de te poser des questions si c'est flou."], p:"Tu es [rôle]. Contexte : [contexte]. Objectif : [objectif]. Format : [format]. Si quelque chose est flou, pose-moi d'abord 3 questions."},
+ {t:"Vérifier une réponse de l'IA", tips:["Demande les sources, puis ouvre-les vraiment.","Fais refaire le raisonnement étape par étape.","Compare la réponse entre deux IA.","Méfie-toi des chiffres, dates et citations précises."], p:"Donne-moi tes sources avec les liens, indique ce dont tu es sûr et ce dont tu n'es pas sûr, puis refais ton raisonnement étape par étape."},
+ {t:"Réviser et apprendre (étudiants)", tips:["Colle ton cours et demande une fiche de révision.","Fais-toi interroger plutôt que résumer.","Demande d'expliquer comme à un lycéen.","Relis toujours avec ton cours : l'IA peut se tromper."], p:"Voici mon cours : [texte]. Pose-moi 10 questions, une par une, corrige mes réponses et explique mes erreurs."}];
+const GLOSS = [["LLM","Grand modèle de langage : l'IA qui génère du texte (Claude, GPT, Gemini…)."],["Prompt","Le message ou la consigne que tu donnes à l'IA."],["Token","Un morceau de mot : l'unité utilisée pour mesurer la taille d'un texte."],["Fenêtre de contexte","La quantité de texte que l'IA peut lire et garder en tête en une fois."],["Hallucination","Quand l'IA invente une information fausse avec aplomb."],["Agent","Une IA capable d'enchaîner des actions seule (chercher, coder, cliquer…)."],["API","La porte d'entrée qui permet aux développeurs d'utiliser une IA dans leurs applications."],["Multimodal","Capable de traiter plusieurs types de contenu : texte, image, audio, vidéo."],["RAG","Méthode où l'IA va chercher dans des documents avant de répondre."],["Fine-tuning","Réentraîner un modèle sur des données précises pour le spécialiser."]];
 
 /* ================= OUTILS ================= */
-const $ = s => document.querySelector(s);
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const txt = s => (s||"").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#160;/g," ").replace(/&amp;/g,"&").replace(/&#8217;/g,"’").replace(/\s+/g," ").trim();
-const okUrl = u => /^https:\/\//.test(u||"");
+const okUrl = u => /^https:\/\//.test(u || "");
+const ls = {get:(k,d)=>{try{return JSON.parse(localStorage.getItem("iar-"+k))??d}catch{return d}}, set:(k,v)=>{try{localStorage.setItem("iar-"+k,JSON.stringify(v))}catch{}}};
 const fmt = d => new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
-const AI_RE = /\bia\b|intelligence artificielle|chatgpt|openai|claude|anthropic|gemini|mistral|llm|gpt|deepseek|copilot|grok/i;
+const ago = d => { const n = Math.floor((Date.now() - new Date(d)) / 864e5); return n < 1 ? "aujourd'hui" : n === 1 ? "hier" : `il y a ${n} j`; };
 const hash = s => [...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0, 7);
+const toast = m => { const t = $("#toast"); t.textContent = m; t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 1800); };
 
-const KEY = "ia-radar-v3", TRK = "ia-radar-tr-v1";
-let store = [], tr = {}, view = location.hash.slice(1) || "home", loaded = false;
-try { store = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch {}
-try { tr = JSON.parse(localStorage.getItem(TRK) || "{}"); } catch {}
-const save = () => {
-  try { localStorage.setItem(KEY, JSON.stringify(store.slice(0, 400))); } catch {}
-  try { localStorage.setItem(TRK, JSON.stringify(tr)); } catch {}
-};
-const find = link => store.find(x => x.link === link);
+let news = [], meta = {}, loaded = false, view = location.hash.slice(1) || "home", cur = null, stat = "";
+const favs = new Set(ls.get("fav",[])), read = new Set(ls.get("read",[])), aiok = new Set(ls.get("aiok",[]));
+const F = {q:"", tag:"", days:0, sort:"date", list:ls.get("list",false), hide:false}, P = {stu:false, sort:"price"}, Q = {i:0, s:{claude:0,gemini:0,chatgpt:0}};
+const save = () => { ls.set("fav",[...favs]); ls.set("read",[...read].slice(-500)); ls.set("aiok",[...aiok].slice(-300)); };
 
-/* ================= TRADUCTION AUTOMATIQUE EN FRANÇAIS ================= */
-async function toFr(text) {
-  if (!text) return text;
-  if (tr[text]) return tr[text];
-  const q = encodeURIComponent(text.slice(0, 450));
-  try {  // 1) Google Translate (point d'accès non officiel, sans quota)
-    const d = await (await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=fr&dt=t&q=" + q)).json();
-    const t = d[0].map(x => x[0]).join("");
-    if (t) return (tr[text] = t);
-  } catch {}
-  try {  // 2) MyMemory (secours)
-    const d = await (await fetch("https://api.mymemory.translated.net/get?q=" + q + "&langpair=en|fr")).json();
-    const t = d?.responseData?.translatedText;
-    if (t && d.responseStatus == 200 && !/MYMEMORY WARNING|QUERY LENGTH/i.test(t)) return (tr[text] = t);
-  } catch {}
-  return null;
-}
+/* Dernière visite (pour le bandeau « nouveautés ») */
+if (!sessionStorage.getItem("iar-s")) { sessionStorage.setItem("iar-s","1"); ls.set("prev", ls.get("visit",0)); ls.set("visit", Date.now()); }
 
-/* ================= IMAGES ================= */
-// 1) image du flux  2) image de couverture de la page de l'article  3) illustration générée par IA à partir de l'article
-async function ogImage(link) {
-  try {
-    const d = await (await fetch("https://api.microlink.io/?url=" + encodeURIComponent(link))).json();
-    const u = d?.data?.image?.url; return okUrl(u) ? u : null;
-  } catch { return null; }
+/* ================= ILLUSTRATIONS ================= */
+const GLYPHS = [[/code|developer|api|sdk|programm|agent/i,"💻"],[/secur|safety|risk|cyber|threat|sécur/i,"🛡️"],[/imag|video|vision|creative|design|sora|veo/i,"🎨"],[/voice|audio|speech|music|vocal/i,"🎙️"],[/student|educat|school|learn|universit|étudiant/i,"🎓"],[/enterprise|business|pricing|plan|partner|invest|funding|revenue|prix|abonnement/i,"💼"],[/health|medic|scien|research|biolog|climate|santé/i,"🔬"],[/search|browse|web|recherche/i,"🔎"],[/chip|compute|data ?cent|infrastructure|energy|gpu/i,"🖥️"],[/polic|govern|law|regulat|europe|loi/i,"⚖️"],[/model|launch|introduc|releas|opus|sonnet|gpt|gemini|claude|modèle/i,"✨"]];
+const PAL = {claude:[18,26], gemini:[222,262], chatgpt:[158,178], media:[262,300]};
+const rng = seed => () => { seed = (seed + 0x6D2B79F5) >>> 0; let t = seed; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+function art(n) {
+  const id = hash(n.link), r = rng(id), [h1,h2] = PAL[n.company] || PAL.media;
+  const g = (GLYPHS.find(([re]) => re.test((n.titleEn||n.title) + " " + (n.summaryEn||n.summary||""))) || [0,"✦"])[1];
+  let s = `<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${Math.round(h1+r()*14)} 78% 58%)"/><stop offset="1" stop-color="hsl(${Math.round(h2+r()*14)} 68% 36%)"/></linearGradient></defs><rect width="400" height="225" fill="url(#g${id})"/>`;
+  for (let i = 0; i < 6; i++) s += `<circle cx="${Math.round(r()*400)}" cy="${Math.round(r()*225)}" r="${Math.round(28+r()*90)}" fill="#fff" opacity="${(.06+r()*.14).toFixed(2)}"/>`;
+  for (let i = 0; i < 2; i++) s += `<rect x="${Math.round(r()*320)}" y="${Math.round(r()*160)}" width="${Math.round(60+r()*80)}" height="${Math.round(60+r()*80)}" rx="22" fill="#fff" opacity="${(.05+r()*.1).toFixed(2)}" transform="rotate(${Math.round(r()*60-30)} 200 112)"/>`;
+  return s + `<circle cx="200" cy="112" r="60" fill="#fff" opacity=".2"/><text x="200" y="140" font-size="76" text-anchor="middle">${g}</text></svg>`;
 }
-const STYLE = {claude:"warm terracotta and cream color palette", gemini:"blue and violet gradient color palette", chatgpt:"emerald green and teal color palette", media:"soft purple and neutral color palette"};
-function genUrl(n) {
-  const p = `Editorial illustration for a tech news article, modern flat vector style, ${STYLE[n.company]||STYLE.media}, clean composition, no text, no letters, no logos. Subject: ${n.title}. ${(n.summary||"").slice(0,120)}`;
-  return "https://image.pollinations.ai/prompt/" + encodeURIComponent(p) + "?width=800&height=450&nologo=true&seed=" + hash(n.link);
-}
+const STYLE = {claude:"warm terracotta and cream palette", gemini:"blue and violet palette", chatgpt:"emerald green and teal palette", media:"soft purple palette"};
+const genUrl = n => "https://image.pollinations.ai/prompt/" + encodeURIComponent(`Editorial illustration for a tech news article, modern flat vector style, ${STYLE[n.company]||STYLE.media}, clean composition, no text, no letters, no logos. Subject: ${n.titleEn||n.title}. ${(n.summaryEn||"").slice(0,120)}`) + "?width=800&height=450&nologo=true&seed=" + hash(n.link);
+const find = l => news.find(x => x.link === l);
 function setImage(c, n, url, gen) {
-  n.image = url; n.gen = gen;
   const box = c.querySelector(".img"); let im = box.querySelector("img");
   if (!im) { im = document.createElement("img"); im.loading = "lazy"; im.alt = ""; im.referrerPolicy = "no-referrer"; box.querySelector(".ph").after(im); }
-  im.src = url;
-  if (gen && !box.querySelector(".gen")) box.insertAdjacentHTML("beforeend", '<b class="gen">Illustration IA</b>');
+  im.src = url; if (gen && !box.querySelector(".gen")) box.insertAdjacentHTML("beforeend", '<b class="gen">Illustration IA</b>');
 }
-// Si une image ne charge pas : on passe à l'illustration IA, et si elle échoue aussi, on garde le visuel de couleur.
+// Générateur d'images IA gratuit : 1 image / ~15 s, donc une par une, en arrière-plan. L'illustration locale reste en attendant.
+const aiQ = []; let aiRun = false;
+function queueAI(n) { if (!n || n.image || n.noai || aiQ.includes(n.link) || aiQ.length >= 8) return; aiQ.push(n.link); runAI(); }
+async function runAI() {
+  if (aiRun) return; aiRun = true;
+  while (aiQ.length) {
+    const n = find(aiQ.shift()); if (!n || n.image) continue;
+    const url = genUrl(n), ok = await new Promise(r => { const im = new Image(); im.onload = () => r(true); im.onerror = () => r(false); im.src = url; });
+    if (ok) { n.image = url; n.gen = true; aiok.add(n.link); save(); $$(".card[data-l]").forEach(c => { if (c.dataset.l === n.link) setImage(c, n, url, true); }); } else n.noai = true;
+    await new Promise(r => setTimeout(r, 16000));
+  }
+  aiRun = false;
+}
 document.addEventListener("error", e => {
   const im = e.target; if (im.tagName !== "IMG" || !im.closest(".img")) return;
-  const c = im.closest(".card"), n = find(c.dataset.l); if (!n) return;
-  if (!n.gen) setImage(c, n, genUrl(n), true);
-  else { im.remove(); n.image = ""; n.noimg = true; }
+  const c = im.closest(".card"), n = find(c.dataset.l); im.remove(); c.querySelector(".gen")?.remove();
+  if (n) { const g = n.gen; n.image = ""; n.gen = false; if (g) n.noai = true; else queueAI(n); }
 }, true);
 
-/* ================= CHARGEMENT DES FLUX ================= */
+/* ================= CHARGEMENT (directement dans la page) ================= */
+const prep = n => { n.tags = TAGS.filter(([,re]) => re.test(`${n.titleEn||n.title} ${n.title} ${n.summary||""}`)).map(t => t[0]); if (!n.image && aiok.has(n.link)) { n.image = genUrl(n); n.gen = true; } };
+const strip = s => (s||"").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#160;/g," ").replace(/&amp;/g,"&").replace(/&#8217;/g,"’").replace(/\s+/g," ").trim();
 async function pull(src, extra) {
   const d = await (await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(src.url))).json();
   if (d.status !== "ok") throw 0;
   return d.items.map(it => {
-    const html = it.content || it.description || "";
-    const img = it.thumbnail || (html.match(/<img[^>]+src=["']([^"']+)/i)||[])[1] || "";
-    return {...extra, title:txt(it.title), link:it.link, summary:txt(it.description || it.content).slice(0,200),
-      image: okUrl(img) ? img : "", date:new Date((it.pubDate||"").replace(" ","T")+"Z").toISOString()};
+    const html = it.content || it.description || "", enc = it.enclosure?.link;
+    const img = it.thumbnail || (/\.(jpe?g|png|webp|gif)(\?|$)/i.test(enc||"") ? enc : "") || (html.match(/<img[^>]+src=["']([^"']+)/i)||[])[1] || "";
+    const vid = (it.link||"").match(/[?&]v=([\w-]{6,})/), t = strip(it.title), s = strip(it.description || it.content).slice(0, 250), dt = new Date((it.pubDate||"").replace(" ","T")+"Z");
+    return {...extra, title:t, titleEn:t, summary:s, summaryEn:s, link:it.link, image:okUrl(img)?img:"", date:(isNaN(dt)?new Date():dt).toISOString(), ...(extra.video && vid ? {vid:vid[1]} : {})};
   });
 }
 async function load() {
-  const known = new Set(store.map(n => n.link)); let failed = 0;
-  const jobs = [...FEEDS.map(f => [f, {kind:"news", company:f.company, source:f.name}]),
-                ...MEDIA.map(m => [m, {kind:"media", company:"media", source:m.name, onlyAI:!!m.onlyAI}])];
-  await Promise.all(jobs.map(async ([src, extra]) => {
-    try {
-      for (const n of await pull(src, extra)) {
-        if (!okUrl(n.link) || known.has(n.link) || isNaN(new Date(n.date))) continue;
-        if (extra.onlyAI && !AI_RE.test(n.title + " " + n.summary)) continue;
-        known.add(n.link); store.push(n);
-      }
-    } catch { failed++; }
-  }));
-  store.sort((a,b) => b.date.localeCompare(a.date));
-  loaded = true; save();
-  $("#foot").innerHTML = `Mis à jour : ${new Date().toLocaleString("fr-FR")}${failed ? ` · ${failed} source(s) indisponible(s)` : ""}<br>Titres et résumés traduits automatiquement en français. Les illustrations marquées « IA » sont générées à partir du titre de l'article.`;
-  render();
+  news = ls.get("store", []); news.forEach(prep); loaded = news.length > 0; render(); status();
+  const known = new Set(news.map(n => n.link)); let failed = 0;
+  const jobs = [...FEEDS.map(f => [f, {kind:"news", company:f.company, source:f.name}]), ...MEDIA.map(m => [m, {kind:"media", company:"media", source:m.name}]), ...YOUTUBE.map(y => [{url:"https://www.youtube.com/feeds/videos.xml?channel_id="+y.id}, {kind:"media", company:"media", source:"▶ "+y.name, video:true}])];
+  await Promise.all(jobs.map(async ([src, extra]) => { try { for (const n of await pull(src, extra)) { if (!okUrl(n.link) || known.has(n.link) || (src.onlyAI && !AI_RE.test(n.title+" "+n.summary))) continue; known.add(n.link); prep(n); news.push(n); } } catch { failed++; } }));
+  news.sort((a,b) => b.date.localeCompare(a.date)); meta = {lastUpdate:new Date().toISOString(), failed}; loaded = true; ls.set("store", news.slice(0, 400)); render();
 }
-
-/* ================= ENRICHISSEMENT : traduction + images ================= */
-let running = false;
+/* Traduction en français + image de couverture, carte par carte */
+let tr = ls.get("tr", {});
+async function toFr(text) {
+  if (!text) return null; if (tr[text]) return tr[text];
+  const q = encodeURIComponent(text.slice(0, 450));
+  try { const d = await (await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=fr&dt=t&q=" + q)).json(), t = d[0].map(x => x[0]).join(""); if (t) return tr[text] = t; } catch {}
+  try { const d = await (await fetch("https://api.mymemory.translated.net/get?q=" + q + "&langpair=en|fr")).json(), t = d?.responseData?.translatedText; if (t && d.responseStatus == 200 && !/MYMEMORY WARNING|QUERY LENGTH/i.test(t)) return tr[text] = t; } catch {}
+  return null;
+}
+async function ogImage(link) { try { const d = await (await fetch("https://api.microlink.io/?url=" + encodeURIComponent(link))).json(), u = d?.data?.image?.url; return okUrl(u) ? u : null; } catch { return null; } }
 async function work(c) {
   const n = find(c.dataset.l); if (!n) return;
   if (n.kind === "news" && !n.fr && !n.frTried) {
-    const [t, s] = await Promise.all([toFr(n.title), toFr(n.summary)]);
-    n.frTried = true;
-    if (t) { n.fr = {t, s: s || n.summary}; c.querySelector("h3").textContent = n.fr.t; c.querySelector("p").textContent = n.fr.s; }
+    const [t, s2] = await Promise.all([toFr(n.titleEn), toFr(n.summaryEn)]); n.frTried = true;
+    if (t) { n.fr = true; n.title = t; if (s2) n.summary = s2; c.querySelector("h3 a").textContent = n.title; const p = c.querySelector(".body p"); if (p) p.textContent = n.summary; }
   }
-  if (!n.image && !n.noimg) {
-    const u = await ogImage(n.link);
-    if (u) setImage(c, n, u, false); else setImage(c, n, genUrl(n), true);
-  }
+  if (!n.image && !n.video) { if (!n.noimg) { const u = await ogImage(n.link); if (u) { n.image = u; setImage(c, n, u, false); } else { n.noimg = true; queueAI(n); } } else queueAI(n); }
 }
+let busy = false;
 async function enrich() {
-  if (running) return; running = true;
-  const cards = [...document.querySelectorAll(".card[data-l]")].slice(0, 30);
-  for (let i = 0; i < cards.length; i += 4) await Promise.all(cards.slice(i, i+4).map(c => work(c).catch(()=>{})));
-  save(); running = false;
+  if (busy) return; busy = true;
+  const cs = $$("#res .card[data-l]").slice(0, 24);
+  for (let i = 0; i < cs.length; i += 4) await Promise.all(cs.slice(i, i+4).map(c => work(c).catch(() => {})));
+  ls.set("tr", tr); ls.set("store", news.slice(0, 400)); busy = false;
+}
+async function status() {
+  const S = [["Claude","https://status.claude.com/api/v2/status.json","https://status.claude.com"],["ChatGPT","https://status.openai.com/api/v2/status.json","https://status.openai.com"],["Gemini",null,"https://status.cloud.google.com"]];
+  stat = (await Promise.all(S.map(async ([n,api,page]) => {
+    let i = "⚪", t = "voir le statut";
+    if (api) try { const d = await (await fetch(api)).json(), k = d.status.indicator; i = k === "none" ? "🟢" : k === "minor" ? "🟠" : "🔴"; t = d.status.description; } catch {}
+    return `<a class="pill" href="${page}" target="_blank" rel="noopener noreferrer">${i} ${n} · ${esc(t)}</a>`;
+  }))).join("");
+  const el = $("#stat"); if (el) el.innerHTML = stat;
 }
 
-/* ================= AFFICHAGE ================= */
-const card = n => {
-  const t = n.fr?.t || n.title, s = n.fr?.s || n.summary, recent = Date.now() - new Date(n.date) < 172800000;
-  return `<a class="card ${n.company}" data-l="${esc(n.link)}" href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">
-    <div class="img"><div class="ph">${esc((NAMES[n.company]||"?")[0])}</div>${n.image?`<img loading="lazy" alt="" referrerpolicy="no-referrer" src="${esc(n.image)}">`:""}${recent?'<b class="new">RÉCENT</b>':""}${n.gen&&n.image?'<b class="gen">Illustration IA</b>':""}</div>
-    <div class="body">
-      <span class="tag">${ICONS[n.company]||"📰"} ${esc(NAMES[n.company]||"Tech")} · ${esc(n.source)}</span>
-      <h3>${esc(t)}</h3><p>${esc(s)}</p><small>${fmt(n.date)}</small>
-    </div></a>`;
+/* ================= COMPOSANTS ================= */
+const card = (n, i = 0) => {
+  const u = okUrl(n.image) ? n.image : "", isNew = Date.now() - new Date(n.date) < 172800000, link = esc(n.link);
+  const a = n.video ? `href="${link}" data-play="${esc(n.vid)}"` : `href="${link}" target="_blank" rel="noopener noreferrer"`;
+  return `<article class="card ${n.company}${read.has(n.link) ? " read" : ""}" data-l="${link}" style="animation-delay:${Math.min(i,10)*25}ms">
+  <a class="img" ${a} tabindex="-1" aria-hidden="true"><div class="ph">${art(n)}</div>${u ? `<img loading="lazy" alt="" referrerpolicy="no-referrer" src="${esc(u)}">` : ""}${isNew ? '<b class="new">NOUVEAU</b>' : ""}${n.video ? '<b class="play">▶ Vidéo</b>' : ""}${n.gen && u ? '<b class="gen">Illustration IA</b>' : ""}</a>
+  <div class="body"><span class="tag"><span class="dot"></span>${esc(NAMES[n.company]||"Tech")} · ${esc(n.source)}</span>
+  <h3><a ${a}>${esc(n.title)}</a></h3><p>${esc(n.resume || n.summary)}</p>
+  ${n.tags?.length ? `<div class="tgs">${n.tags.map(t => `<span>${t}</span>`).join("")}</div>` : ""}
+  <div class="act"><small>${fmt(n.date)}</small><span><button data-fav class="${favs.has(n.link) ? "on" : ""}" aria-pressed="${favs.has(n.link)}" aria-label="Favori">${favs.has(n.link) ? "♥" : "♡"}</button><button data-read aria-label="Marquer comme lu" title="Marquer comme lu">✓</button><button data-share aria-label="Partager" title="Partager">↗</button></span></div></div></article>`;
 };
-const grid = l => l.length ? `<div class="grid">${l.map(card).join("")}</div>` : `<p class="empty">${loaded ? "Rien à afficher pour le moment." : "Chargement des actualités…"}</p>`;
-
-const DEALS = `<div class="hero"><h1>Comparatif Étudiant</h1><p>Tarifs indicatifs : vérifie toujours sur la page officielle avant de t'abonner.</p></div>
-  <div class="grid">
-    <div class="card deal-card best"><div class="deal-badge">N°1 Étudiant</div>
-      <h3>${ICONS.gemini} Google AI Pro (Gemini)</h3><p class="deal-price">~5,49 € <span>/ mois</span></p>
-      <p><strong>Profil :</strong> Étudiants Master / Bureautique.</p>
-      <ul class="deal-list"><li><strong>Remise étudiante</strong> appliquée.</li></ul></div>
-    <div class="card deal-card" style="border-color:#f97316"><h3>🌪️ Mistral Pro</h3><p class="deal-price">5,99 € <span>/ mois</span></p>
-      <p><strong>Profil :</strong> Souveraineté européenne / Code.</p>
-      <ul class="deal-list"><li><strong>Offre étudiante :</strong> valable 12 mois.</li><li>Le leader français de l'IA.</li></ul></div>
-    <div class="card deal-card" style="border-color:#06b6d4"><h3>🔍 Perplexity Pro</h3><p class="deal-price">~10,00 € <span>/ mois</span></p>
-      <p><strong>Profil :</strong> Recherche académique poussée.</p>
-      <ul class="deal-list"><li><strong>Remise 50 % :</strong> via SheerID.</li><li>Accès à plusieurs modèles de pointe.</li></ul></div>
-    <div class="card deal-card"><h3>${ICONS.claude} Claude Pro</h3><p class="deal-price">~22,00 € <span>(20 $)</span></p>
-      <p><strong>Profil :</strong> Développeurs avancés.</p>
-      <ul class="deal-list"><li>Pas d'offre étudiante connue : <a href="https://claude.com/pricing" target="_blank" rel="noopener noreferrer"><u>vérifier</u></a>.</li></ul></div>
-    <div class="card deal-card"><h3>${ICONS.chatgpt} ChatGPT Plus</h3><p class="deal-price">~22,00 € <span>(20 $)</span></p>
-      <p><strong>Profil :</strong> Grand public / Mode vocal.</p>
-      <ul class="deal-list"><li>Promo étudiante : <a href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener noreferrer"><u>vérifier</u></a> selon ton pays.</li></ul></div>
-  </div>`;
-
-function render() {
-  $("#nav").innerHTML = [["home","Accueil"],["claude","Claude"],["gemini","Gemini"],["chatgpt","ChatGPT"],["media","Médias"],["deals","Bons Plans"],["archive","Archive"]]
-    .map(([k,l]) => `<button data-v="${k}" class="${k===view?"on":""}">${ICONS[k]||""} ${l}</button>`).join("");
-  const news = store.filter(n => n.kind === "news");
-  let h = "";
-  if (view === "home") {
-    h = `<div class="hero"><h1>Toute l'actualité IA, en français.</h1><p>Les annonces de Claude, Gemini et ChatGPT, traduites et mises à jour à chaque visite.</p></div>
-         <h2>Dernières publications</h2>${grid(news.slice(0,12))}`;
-  } else if (["claude","gemini","chatgpt","media"].includes(view)) {
-    const list = store.filter(n => view === "media" ? n.kind === "media" : n.company === view);
-    h = `<div class="hero"><h1>${view==="media" ? "Presse tech française" : "Actus " + NAMES[view]}</h1><p>${view==="media" ? "Ce que les médias français disent de l'IA." : "Publications officielles, traduites en français."}</p></div>${grid(list)}`;
-  } else if (view === "archive") {
-    const by = {}; news.forEach(n => (by[n.date.slice(0,7)] ||= []).push(n));
-    h = `<div class="hero"><h1>Archive</h1><p>Les anciennes actualités, classées par mois.</p></div>` +
-        (Object.keys(by).sort().reverse().map(m => `<h2>${new Date(m+"-01").toLocaleDateString("fr-FR",{month:"long",year:"numeric"})}</h2>${grid(by[m])}`).join("") || `<p class="empty">Rien pour l'instant.</p>`);
-  } else if (view === "deals") h = DEALS;
-  $("#app").innerHTML = h;
+const gridHtml = l => l.length ? `<div class="${F.list ? "list" : "grid"}">${l.map(card).join("")}</div>` : `<p class="empty">${loaded ? "Rien à afficher avec ces filtres." : "Chargement…"}</p>`;
+const filt = l => { let r = l.filter(n => (!F.q || `${n.title} ${n.summary} ${n.resume||""}`.toLowerCase().includes(F.q)) && (!F.tag || n.tags.includes(F.tag)) && (!F.days || Date.now() - new Date(n.date) < F.days * 864e5) && !(F.hide && read.has(n.link))); return F.sort === "source" ? [...r].sort((a,b) => a.source.localeCompare(b.source) || b.date.localeCompare(a.date)) : r; };
+function fill() {
+  const el = $("#res"); if (!el || !cur) return;
+  let l = filt(cur.items()); if (cur.max && !F.q && !F.tag && !F.days) l = l.slice(0, cur.max);
+  el.innerHTML = (cur.html || gridHtml)(l);
   enrich();
 }
+const toolbar = () => `<div class="toolbar" role="search"><input id="q" type="search" placeholder="Rechercher…" aria-label="Rechercher dans les actus" value="${esc(F.q)}">
+ <select id="days" aria-label="Période"><option value="0">Toute période</option><option value="7" ${F.days==7?"selected":""}>7 jours</option><option value="30" ${F.days==30?"selected":""}>30 jours</option></select>
+ <select id="sort" aria-label="Tri"><option value="date">Plus récent</option><option value="source" ${F.sort=="source"?"selected":""}>Par source</option></select>
+ <button class="chip" id="lay" aria-pressed="${F.list}">${F.list ? "▦ Grille" : "☰ Liste"}</button>
+ <label class="chk"><input type="checkbox" id="hide" ${F.hide?"checked":""}> Masquer les lus</label></div>
+ <div class="chips" role="group" aria-label="Filtrer par thème"><button class="chip ${!F.tag?"on":""}" data-tag="">Tous</button>${TAGS.map(([k]) => `<button class="chip ${F.tag===k?"on":""}" data-tag="${k}">${k}</button>`).join("")}</div>`;
+const hero = (h, p) => `<section class="hero"><h1>${h}</h1><p>${p}</p></section>`;
+const nn = () => news.filter(n => n.kind === "news");
 
-document.addEventListener("click", e => { const b = e.target.closest("[data-v]"); if (b) { view = b.dataset.v; location.hash = view; scrollTo({top:0}); } });
+/* ================= VUES ================= */
+function home() {
+  cur = {items: nn, max: 12};
+  const prev = ls.get("prev", 0), fresh = prev ? nn().filter(n => new Date(n.date) > prev).length : 0;
+  const w = nn().filter(n => Date.now() - new Date(n.date) < 7*864e5), key = w.filter(n => n.tags.some(t => t === "Nouveau modèle" || t === "Prix & offres"));
+  const pick = [...key, ...w].filter((n,i,a) => a.indexOf(n) === i).slice(0, 5);
+  return hero("Toute l'actualité IA, en français.", "Claude, Gemini et ChatGPT : annonces officielles traduites, mises à jour automatiquement.") +
+   (fresh ? `<div class="banner">🔔 <b>${fresh} nouveauté${fresh>1?"s":""}</b> depuis ta dernière visite (${fmt(prev)}).</div>` : "") +
+   `<div id="stat" class="pills" aria-label="État des services">${stat}</div>` +
+   `<div class="pills">${IA.map(c => { const l = news.find(n => n.company === c); return `<button class="chip ${c}" data-v="${c}"><span class="dot"></span>${NAMES[c]}${l ? " · dernière annonce " + ago(l.date) : ""}</button>`; }).join("")}</div>` +
+   (pick.length ? `<section class="panel"><h2>⚡ La semaine en 30 secondes</h2><ul>${pick.map(n => `<li><b style="color:var(--${n.company})">${NAMES[n.company]}</b> · <a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer"><u>${esc(n.title)}</u></a></li>`).join("")}</ul></section>` : "") +
+   toolbar() + `<h2>À la une</h2><div id="res"></div>`;
+}
+const iaView = () => { cur = {items: () => news.filter(n => n.company === view)}; return hero("Actus " + NAMES[view], "Publications officielles, traduites en français.") + toolbar() + `<div id="res"></div>`; };
+const mediaView = () => { cur = {items: () => news.filter(n => n.kind === "media")}; return hero("Presse tech française", "Ce que les médias français (et les vidéastes ajoutés) disent de l'IA.") + toolbar() + `<div id="res"></div>`; };
+const favView = () => { cur = {items: () => news.filter(n => favs.has(n.link)), html: l => l.length ? gridHtml(l) : `<p class="empty">Aucun favori pour l'instant : clique sur ♡ sur une carte.</p>`}; return hero("♥ Mes favoris", "Gardés sur cet appareil.") + `<div id="res"></div>`; };
+function archiveView() {
+  const mod = c => nn().filter(n => n.company === c && n.tags.includes("Nouveau modèle")).slice(0, 5);
+  cur = {items: nn, html: l => { const by = {}; l.forEach(n => (by[n.date.slice(0,7)] ||= []).push(n)); return Object.keys(by).sort().reverse().map(m => `<h2>${new Date(m+"-01").toLocaleDateString("fr-FR",{month:"long",year:"numeric"})}</h2>${gridHtml(by[m])}`).join("") || `<p class="empty">Rien pour l'instant.</p>`; }};
+  return hero("Archive & frise", "Les annonces gardées sur ton navigateur depuis ta première visite, et les dernières sorties de modèles.") +
+   `<h2>🕒 Frise des annonces de modèles</h2><div class="tl">${IA.map(c => `<div class="panel ${c}"><h3 style="color:var(--c)">${NAMES[c]}</h3><ul style="padding-left:18px">${mod(c).map(n => `<li><a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">${esc(n.title)}</a><small>${fmt(n.date)}</small></li>`).join("") || '<li class="mu">Pas encore d\'annonce détectée.</li>'}</ul></div>`).join("")}</div>` + toolbar() + `<div id="res"></div>`;
+}
+function plansView() {
+  let d = DEALS.filter(x => !P.stu || x.student); d = [...d].sort((a,b) => P.sort === "price" ? a.price - b.price : a.name.localeCompare(b.name));
+  return hero("Bons plans & abonnements", "Tarifs indicatifs : vérifie toujours la page officielle avant de t'abonner.") +
+   `<div class="toolbar"><label class="chk"><input type="checkbox" id="pst" ${P.stu?"checked":""}> Seulement avec offre étudiante</label><select id="psort" aria-label="Tri"><option value="price">Prix croissant</option><option value="name" ${P.sort=="name"?"selected":""}>Nom</option></select></div>
+   <div class="grid">${d.map(x => `<div class="deal ${x.best?"best":""}">${x.best ? '<span class="badge">N°1 Étudiant</span>' : ""}<h3>${x.emoji || ICONS[x.c] || ""} ${esc(x.name)}</h3><div class="price">${esc(x.label)}</div><p><b>Profil :</b> ${esc(x.profile)}</p><p>Étudiants : <b>${x.student ? "oui" : "à vérifier"}</b></p><ul>${x.notes.map(t => `<li>${esc(t)}</li>`).join("")}</ul><a href="${x.src}" target="_blank" rel="noopener noreferrer"><u>Page officielle ↗</u></a></div>`).join("")}</div>`;
+}
+function toolsView() {
+  const done = Q.i >= QUIZ.length, q = QUIZ[Q.i], top = Object.entries(Q.s).sort((a,b) => b[1] - a[1])[0][0];
+  return hero("Outils", "Un quiz, un calculateur de budget et l'état des services.") +
+   `<section class="panel q"><h2>🎯 Quelle IA est faite pour toi ?</h2>${done ? `<p><b>${VERDICT[top]}</b></p><p class="note">Indicatif : teste les offres gratuites des trois avant de payer.</p><button class="chip" data-qreset>Recommencer</button>` : `<p>Question ${Q.i+1}/${QUIZ.length} · <b>${esc(q.q)}</b></p>${q.a.map((a,i) => `<button data-ans="${i}">${esc(a[0])}</button>`).join("")}`}</section>
+   <section class="panel calc"><h2>🧮 Calculateur de budget</h2>${DEALS.map((x,i) => `<label><input type="checkbox" data-ck="${i}"> <span style="flex:1">${esc(x.name)}</span><input class="in" type="number" min="0" step="0.5" value="${x.price}" data-pr="${i}" aria-label="Prix mensuel ${esc(x.name)}"> €/mois</label>`).join("")}<div class="tot" id="tot">0 € / mois · 0 € / an</div><p class="note">Modifie les prix selon ce que tu as vérifié.</p></section>
+   <h2>État des services</h2><div class="pills">${stat}</div>`;
+}
+const guidesView = () => hero("Guides & glossaire", "Des méthodes qui marchent avec Claude, Gemini et ChatGPT.") +
+  `<div class="grid">${GUIDES.map((g,i) => `<div class="panel"><h2>${esc(g.t)}</h2><ul>${g.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul><pre class="p">${esc(g.p)}</pre><button class="chip" data-copy="${i}">Copier le prompt</button></div>`).join("")}</div>
+  <h2>📖 Glossaire</h2><input class="in" id="gq" type="search" placeholder="Chercher un terme…" aria-label="Chercher un terme"><dl id="gl">${glossHtml("")}</dl>`;
+const glossHtml = q => GLOSS.filter(([t,d]) => (t+d).toLowerCase().includes(q)).map(([t,d]) => `<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("") || "<dd>Aucun terme.</dd>";
+function aboutView() {
+  return hero("À propos & sources", "Comment l'information est collectée.") +
+   `<section class="panel"><h2>Méthode</h2><p>À chaque visite, la page lit les flux officiels (Anthropic, OpenAI, Google) et ceux de médias français, traduit les titres et résumés, et ne montre que des liens vers les sources d'origine.</p><p>L'archive est gardée dans ton navigateur : elle commence à ta première visite. Les images appartiennent à leurs auteurs ; quand une photo manque, l'illustration est générée à partir du sujet. Les prix des « Bons plans » sont saisis à la main : vérifie-les sur les pages officielles.</p></section>
+   <section class="panel"><h2>Sources suivies</h2><ul>${[...FEEDS.map(f => [f.name,"officiel"]), ...MEDIA.map(f => [f.name,"presse"])].map(([n,k]) => `<li>${esc(n)} <small>(${k})</small></li>`).join("")}</ul></section>`;
+}
+function render() {
+  const nav = [["home","Accueil"],["claude","Claude"],["gemini","Gemini"],["chatgpt","ChatGPT"],["media","Médias"],["plans","Bons plans"],["tools","Outils"],["guides","Guides"],["archive","Archive"],["fav","♥ Favoris" + (favs.size ? " " + favs.size : "")]];
+  $("#nav").innerHTML = nav.map(([k,l]) => `<button data-v="${k}" class="${k===view?"on":""}" ${k===view?'aria-current="page"':""}>${ICONS[k]||""} ${l}</button>`).join("");
+  cur = null;
+  $("#app").innerHTML = view === "home" ? home() : IA.includes(view) ? iaView() : view === "media" ? mediaView() : view === "plans" ? plansView() : view === "tools" ? toolsView() : view === "guides" ? guidesView() : view === "archive" ? archiveView() : view === "fav" ? favView() : view === "about" ? aboutView() : home();
+  fill();
+  const t = news.filter(n => n.kind === "news").slice(0, 8), a = t.map(n => `<a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer"><b style="color:var(--${n.company})">${NAMES[n.company]}</b> ${esc(n.title)}</a>`).join("");
+  $("#tick").innerHTML = t.length ? `<div class="ticker" aria-label="Dernières actus"><div class="tk">${a}${a}</div></div>` : "";
+  $("#foot").innerHTML = `${meta.lastUpdate ? "Mis à jour : " + new Date(meta.lastUpdate).toLocaleString("fr-FR") + (meta.failed ? " · " + meta.failed + " source(s) indisponible(s)" : "") : "Chargement…"} · <a href="#about">À propos & sources</a>`;
+}
+
+/* ================= INTERACTIONS ================= */
+const go = v => { view = v; location.hash = v; scrollTo({top:0}); };
+const palette = open => { $("#pal").classList.toggle("on", open); if (open) { $("#pq").value = ""; $("#pr").innerHTML = ""; setTimeout(() => $("#pq").focus(), 30); } };
+function calc() { let m = 0; $$("[data-ck]").forEach(c => { if (c.checked) m += +$(`[data-pr="${c.dataset.ck}"]`).value || 0; }); $("#tot").textContent = `${m.toFixed(2).replace(".",",")} € / mois · ${(m*12).toFixed(2).replace(".",",")} € / an`; }
+document.addEventListener("click", e => {
+  const t = e.target, c = t.closest(".card"), l = c?.dataset.l;
+  if (t.closest("#pal") && !t.closest(".box")) return palette(false);
+  if (t.closest("#modal") && !t.closest(".box")) { $("#modal").classList.remove("on"); $("#modal .box").innerHTML = ""; return; }
+  const v = t.closest("[data-v]"); if (v) return go(v.dataset.v);
+  const tg = t.closest("[data-tag]"); if (tg) { F.tag = tg.dataset.tag; return render(); }
+  if (t.closest("#lay")) { F.list = !F.list; ls.set("list", F.list); return render(); }
+  if (t.closest("[data-fav]")) { favs.has(l) ? favs.delete(l) : favs.add(l); save(); const b = t.closest("[data-fav]"); b.classList.toggle("on"); b.textContent = favs.has(l) ? "♥" : "♡"; if (view === "fav") render(); else $("#nav button:last-child").textContent = "♥ Favoris" + (favs.size ? " " + favs.size : ""); return; }
+  if (t.closest("[data-read]")) { read.has(l) ? read.delete(l) : read.add(l); save(); c.classList.toggle("read"); return; }
+  if (t.closest("[data-share]")) { const n = find(l); if (navigator.share) navigator.share({title:n.title, url:l}).catch(() => {}); else navigator.clipboard?.writeText(l).then(() => toast("Lien copié ✓")); return; }
+  const pl = t.closest("[data-play]"); if (pl) { e.preventDefault(); if (c) { read.add(l); save(); c.classList.add("read"); } $("#modal .box").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(pl.dataset.play)}?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Vidéo"></iframe>`; $("#modal").classList.add("on"); return; }
+  if (t.closest(".card a[href]") && c) { read.add(l); save(); c.classList.add("read"); return; }
+  const an = t.closest("[data-ans]"); if (an) { const s = QUIZ[Q.i].a[+an.dataset.ans][1]; for (const k in s) Q.s[k] += s[k]; Q.i++; return render(); }
+  if (t.closest("[data-qreset]")) { Q.i = 0; Q.s = {claude:0,gemini:0,chatgpt:0}; return render(); }
+  const cp = t.closest("[data-copy]"); if (cp) return navigator.clipboard?.writeText(GUIDES[+cp.dataset.copy].p).then(() => toast("Prompt copié ✓"));
+});
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.id === "q") { F.q = t.value.toLowerCase(); fill(); }
+  else if (t.id === "gq") $("#gl").innerHTML = glossHtml(t.value.toLowerCase());
+  else if (t.id === "pq") { const q = t.value.toLowerCase(); $("#pr").innerHTML = q ? news.filter(n => `${n.title} ${n.summary}`.toLowerCase().includes(q)).slice(0, 8).map(n => `<a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer"><b style="color:var(--${n.company})">${NAMES[n.company]}</b> ${esc(n.title)}</a>`).join("") || '<p class="note">Aucun résultat.</p>' : ""; }
+  else if (t.closest(".calc")) calc();
+});
+document.addEventListener("change", e => {
+  const t = e.target;
+  if (t.id === "days") { F.days = +t.value; render(); } else if (t.id === "sort") { F.sort = t.value; render(); } else if (t.id === "hide") { F.hide = t.checked; render(); }
+  else if (t.id === "pst") { P.stu = t.checked; render(); } else if (t.id === "psort") { P.sort = t.value; render(); }
+});
+document.addEventListener("keydown", e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); palette(true); }
+  else if (e.key === "/" && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); palette(true); }
+  else if (e.key === "Escape") { palette(false); $("#modal").classList.remove("on"); $("#modal .box").innerHTML = ""; }
+  else if (e.key === "Enter" && e.target.id === "pq") $("#pr a")?.click();
+});
 addEventListener("hashchange", () => { view = location.hash.slice(1) || "home"; render(); });
-$("#theme").onclick = () => { const d = document.documentElement, dark = getComputedStyle(d).getPropertyValue("--bg").trim() === "#1b1a18"; d.dataset.theme = dark ? "light" : "dark"; };
+$("#srch").onclick = () => palette(true);
+$("#theme").onclick = () => { const d = document.documentElement, dark = getComputedStyle(d).getPropertyValue("--bg").trim() === "#1b1a18"; d.dataset.theme = dark ? "light" : "dark"; ls.set("theme", d.dataset.theme); };
+const fs = d => { const v = Math.min(130, Math.max(85, ls.get("fs", 100) + d)); ls.set("fs", v); document.documentElement.style.fontSize = v + "%"; };
+$("#fsm").onclick = () => fs(-8); $("#fsp").onclick = () => fs(8);
+if (ls.get("theme")) document.documentElement.dataset.theme = ls.get("theme"); fs(0);
 
 render(); load();
 </script>
